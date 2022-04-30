@@ -1,0 +1,57 @@
+﻿@model ProductsAccountingNew.Models.Price;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+    @foreach (var price in @ViewBag.Prices)
+    {
+        <tr>
+            <td>@price.Name</td>
+            <td>@price.price</td>
+            <td>@Html.ActionLink("edit", "Price", new { id = price.Id })</td>
+            <td><a onclick="deletePrice('@price.Id')" href="#"> delete </a></td>
+        </tr>
+    }
+</table>
+<form method="post" asp-action="Prices">
+    <table>
+        <tr>
+            <td>Название:</td>
+            <td>
+                <input type="text" name="Name" />
+            </td>
+        </tr>
+        <tr>
+            <td>Цена:</td>
+            <td>
+                <input type="text" name="price" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Send" />
+            </td>
+            <td></td>
+        </tr>
+
+    </table>
+</form>
+
+
+<script type="text/javascript">
+    function deletePrice(userId) {
+        $.ajax({
+            url: '/delete_price/' + userId,
+            type: 'DELETE',
+            contentType: "application/json; charset=utf-8",
+            success: function () {
+                location.reload()
+            },
+            error: function () {
+                alert("Всё сломалось!!!")
+            }
+        })
+    }
+</script>
