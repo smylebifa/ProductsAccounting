@@ -7,37 +7,37 @@ using System.Linq;
 // Цены на продукты может изменять и удалять только администратор, просматривать могут все
 namespace ProductsAccountingNew.Services
 {
-    public class PricesService
+    public class IProductWithPriceServiceInMemory
     {
-        private static readonly List<Price> Prices = new List<Price>
+        private static readonly List<ProductWithPrice> Prices = new List<ProductWithPrice>
         {
-                new Price(Guid.NewGuid(), "Bread", 49),
-                new Price(Guid.NewGuid(), "Tea", 150),
+                new ProductWithPrice(Guid.NewGuid(), "Bread", 49),
+                new ProductWithPrice(Guid.NewGuid(), "Tea", 150),
         };
 
 
-        public IEnumerable<Price> GetPrices()
+        public IEnumerable<ProductWithPrice> GetProductWithPrice()
         {
             return Prices;
         }
 
-        public void AddPrice(Price price)
+        public void AddProductWithPrice(ProductWithPrice price)
         {
             if (Prices.Any(x => x.Name == price.Name))
                 throw new ArgumentException("User with such name already exists.");
             Prices.Add(price);
         }
 
-        public void UpdatePrice(Price price)
+        public void UpdatePrice(ProductWithPrice price)
         {
             var existing = Prices.FirstOrDefault(x => x.Id == price.Id);
             if (existing == null)
                 return;
             existing.Name = price.Name;
-            existing.price = price.price;
+            existing.Price = price.Price;
         }
 
-        public void DeletePrice(Guid id)
+        public void DeleteProductWithPrice(Guid id)
         {
             var existing = Prices.FirstOrDefault(x => x.Id == id);
             if (existing == null)

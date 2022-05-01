@@ -1,32 +1,33 @@
-﻿@model ProductsAccountingNew.Models.Price;
+﻿@model ProductsAccountingNew.Models.ProductOfUser;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewBag.Title = "title";
+    Layout = "_Layout";
 }
 
 <table class="table">
-    @foreach (var price in @ViewBag.Prices)
+    @foreach (var products in @ViewBag.ProductsOfUser)
     {
-        <tr>
-            <td>@price.Name</td>
-            <td>@price.price</td>
-            <td>@Html.ActionLink("edit", "Price", new { id = price.Id })</td>
-            <td><a onclick="deletePrice('@price.Id')" href="#"> delete </a></td>
-        </tr>
+    <tr>
+        <td>@products.ProductName</td>
+        <td>@products.Count</td>
+        <td><a onclick="deleteProduct('@products.Id')" href="#"> delete </a></td>
+    </tr>
     }
 </table>
-<form method="post" asp-action="Prices">
+
+<form method="post" asp-action="ProductsOfUser">
     <table>
         <tr>
             <td>Название:</td>
             <td>
-                <input type="text" name="Name" />
+                <input type="text" name="ProductName" />
             </td>
         </tr>
         <tr>
-            <td>Цена:</td>
+            <td>Количество:</td>
             <td>
-                <input type="text" name="price" />
+                <input type="text" name="Count" />
             </td>
         </tr>
         <tr>
@@ -39,11 +40,10 @@
     </table>
 </form>
 
-
 <script type="text/javascript">
-    function deletePrice(userId) {
+    function deleteProduct(id) {
         $.ajax({
-            url: '/delete_price/' + userId,
+            url: '/delete_product/' + id,
             type: 'DELETE',
             contentType: "application/json; charset=utf-8",
             success: function () {

@@ -28,8 +28,10 @@ namespace ProductsAccountingNew
 
             services.AddTransient<IUsersService, UsersService>();
 
-            services.AddTransient<PricesService>();
-            services.AddTransient<ProductsService>();
+            services.AddTransient<IProductsWithPriceService, ProductsWithPriceService>();
+            
+            services.AddTransient<IProductsOfUserService, ProductsOfUserService>();
+           
             services.AddTransient<ShoppingListService>();
 
         }
