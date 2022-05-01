@@ -4,9 +4,11 @@ using Microsoft.Extensions.Logging;
 using ProductsAccountingNew.Services;
 using ProductsAccountingNew.Models;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProductsAccountingNew.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly ILogger<UsersController> _logger;
