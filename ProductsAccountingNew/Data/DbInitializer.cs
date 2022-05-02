@@ -14,7 +14,7 @@ namespace ProductsAccountingNew.Data
             try
             {
                 var dbContext = services.GetRequiredService<TestDbContext>();
-                dbContext.Database.EnsureCreated();
+                //dbContext.Database.EnsureCreated();
                 dbContext.SaveChanges();
             }
             catch (Exception e)

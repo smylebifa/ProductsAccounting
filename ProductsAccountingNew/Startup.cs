@@ -28,10 +28,8 @@ namespace ProductsAccountingNew
             services.AddDbContext<TestDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Default")));
 
             services.AddTransient<IUsersService, UsersService>();
-
-            services.AddTransient<IProductsWithPriceService, ProductsWithPriceService>();
             
-            services.AddTransient<IProductsOfUserService, ProductsOfUserService>();
+            services.AddTransient<IProductsOfUsersService, ProductsOfUsersService>();
            
             services.AddTransient<ShoppingListService>();
 

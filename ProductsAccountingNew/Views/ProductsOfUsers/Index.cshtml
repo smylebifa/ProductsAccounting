@@ -1,0 +1,57 @@
+﻿@model ProductsAccountingNew.Models.ProductOfUser;
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<table class="table">
+    @foreach (var products in @ViewBag.ProductsOfUsers)
+    {
+    <tr>
+        <td>@products.ProductName</td>
+        <td>@products.Count</td>        
+        <td><a onclick="deleteProduct('@products.Id')" href="#"> delete </a></td>
+    </tr>
+    }
+</table>
+
+<form method="post" asp-action="ProductsOfUsers">
+    <table>
+        <tr>
+            <td>Название:</td>
+            <td>
+                <input type="text" name="ProductName" />
+            </td>
+        </tr>        
+        <tr>
+            <td>Количество:</td>
+            <td>
+                <input type="text" name="Count" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Send" />
+            </td>
+            <td></td>
+        </tr>
+
+    </table>
+</form>
+
+<script type="text/javascript">
+    function deleteProduct(id) {
+        $.ajax({
+            url: '/delete_product/' + id,
+            type: 'DELETE',
+            contentType: "application/json; charset=utf-8",
+            success: function () {
+                location.reload()
+            },
+            error: function () {
+                alert("Всё сломалось!!!")
+            }
+        })
+    }
+</script>

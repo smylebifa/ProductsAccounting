@@ -130,7 +130,6 @@ E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\System.Threading.Channels.dll
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
-E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\ProductsAccountingNew.MvcApplicationPartsAssemblyInfo.cache
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
@@ -173,8 +172,9 @@ E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ProductsWithPrice\Index.cshtml.g.cs
-E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ProductsWithPrice\ProductWithPrice.cshtml.g.cs
-E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ProductsOfUser\Index.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Authentication\Index.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Authentication\RegisterPage.cshtml.g.cs
+E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\ProductsAccountingNew.MvcApplicationPartsAssemblyInfo.cache
+E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\EntityFramework.SqlServer.dll
+E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\EntityFramework.dll
+E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ProductsOfUsers\Index.cshtml.g.cs
