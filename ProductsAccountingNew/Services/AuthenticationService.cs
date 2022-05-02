@@ -15,6 +15,7 @@ namespace ProductsAccountingNew.Services
             _dbContext = dbContext;
         }
 
+        // Если имя пользователя найдено в базе, возвращаем его Id, иначе создаем нового пользователя
         public Guid Register(string userName, string password)
         {
             var person = _dbContext.Persons.FirstOrDefault(x => x.UserName == userName);
@@ -27,6 +28,7 @@ namespace ProductsAccountingNew.Services
             return newPerson.Id;
         }
 
+        // Проверяем существует ли пользователь в базе данных с таким именем, если существует проверяем совпадает ли пароль
         public bool Login(string userName, string password)
         {
             var person = _dbContext.Persons.FirstOrDefault(x => x.UserName == userName);

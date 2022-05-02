@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProductsAccountingNew.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +18,11 @@ namespace ProductsAccountingNew.Controllers
         {
             _authenticationService = authenticationService;
         }
-        // GET
+        
         [HttpGet("/login")]
         public IActionResult Index()
         {
+            // Передаем пользователю представление Index (берется из названия функции контроллера) 
             return View();
         }
 
@@ -31,6 +31,8 @@ namespace ProductsAccountingNew.Controllers
         {
             var context = HttpContext;
             var form = context.Request.Form;
+
+            // Проверка на заполненность полей формы
             if (!form.ContainsKey("username") || !form.ContainsKey("password"))
                 throw new UnauthorizedAccessException();
 
@@ -43,6 +45,7 @@ namespace ProductsAccountingNew.Controllers
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+            
             return RedirectToAction("Index", "Users");
         }
 
@@ -51,6 +54,7 @@ namespace ProductsAccountingNew.Controllers
         {
             var context = HttpContext;
             await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            
             return RedirectToAction("Index", "Authentication");
         }
 
@@ -62,6 +66,7 @@ namespace ProductsAccountingNew.Controllers
             var name = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
             if (string.IsNullOrEmpty(name))
             {
+                // Код ошибки - не авторизован
                 HttpContext.Response.StatusCode = 401;
                 return string.Empty;
             }
@@ -72,6 +77,7 @@ namespace ProductsAccountingNew.Controllers
         [HttpGet]
         public IActionResult RegisterPage()
         {
+            // Передаем пользователю представление RegisterPage 
             return View();
         }
 
