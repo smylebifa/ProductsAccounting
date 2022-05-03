@@ -15,7 +15,7 @@ namespace ProductsAccountingNew.Services
                 new ProductOfUser(Guid.NewGuid(), "milk", 1, Guid.NewGuid()),
         };
 
-        static public void AddProductToUser(ProductOfUser productOfUser)
+        public void AddProductToUser(ProductOfUser productOfUser)
         {
             ProductsOfUsers.Add(productOfUser);
         }

@@ -6,14 +6,14 @@
 }
 
 <table class="table">
-    @foreach (var shop_list in @ViewBag.ShoppingList)
+    @foreach (var shoppingList in @ViewBag.ShoppingList)
     {
         <tr>
-            <td>@shop_list.Name</td>
-            <td>@shop_list.Count</td>
-            <td>@shop_list.Price</td>
-            <td><a onclick="addProduct('@shop_list.Id' , '@shop_list.Name' , '@shop_list.Count' , '@shop_list.User_id')" href="#">buy product</a></td>
-            <td><a onclick="deleteProduct('@shop_list.Id' , '@shop_list.Name')" href="#">delete</a></td>
+            <td>@shoppingList.Name</td>
+            <td>@shoppingList.Count</td>
+            <td>@shoppingList.Price</td>
+            <td><a onclick="addProduct('@shoppingList.Id' , '@shoppingList.Name' , '@shoppingList.Count', '@shoppingList.Price'  , '@shoppingList.UserId')" href="#">buy product</a></td>
+            <td><a onclick="deleteProduct('@shoppingList.Id' , '@shoppingList.Name')" href="#">delete</a></td>
         </tr>
     }
 </table>
@@ -49,9 +49,9 @@
 
 
 <script type="text/javascript">
-    function addProduct(productId, name, count, userId) {
+    function addProduct(productId, name, count, price, userId) {
         $.ajax({
-            url: '/shopping_list/add_product/' + productId + '/' + name + '/' + count + '/' + userId,
+            url: '/shopping_list/buy_product/' + productId + '/' + name + '/' + count + '/' + price + '/' + userId,
             type: 'POST',
             contentType: "application/json; charset=utf-8",
             success: function () {

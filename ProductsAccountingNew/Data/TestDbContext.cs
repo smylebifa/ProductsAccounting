@@ -12,7 +12,7 @@ namespace ProductsAccountingNew.Data
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<ProductOfUser> ProductsOfUsers { get; set; } = null!;
         public DbSet<Person> Persons { get; set; } = null!;
-
+        public DbSet<ShoppingList> ShoppingList { get; set; } = null!;
 
     }
 }

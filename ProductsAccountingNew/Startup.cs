@@ -31,12 +31,12 @@ namespace ProductsAccountingNew
             
             services.AddTransient<IProductsOfUsersService, ProductsOfUsersService>();
            
-            services.AddTransient<ShoppingListService>();
+            services.AddTransient<IShoppingListService, ShoppingListService>();
 
             services.AddTransient<AuthenticationService>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-       .AddCookie(options => options.LoginPath = "/login");
+                .AddCookie(options => options.LoginPath = "/login");
 
         }
 
@@ -54,6 +54,7 @@ namespace ProductsAccountingNew
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            
             app.UseStaticFiles();
 
             app.UseRouting();

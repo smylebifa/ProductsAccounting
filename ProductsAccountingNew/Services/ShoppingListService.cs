@@ -1,68 +1,67 @@
-﻿using ProductsAccountingNew.Models;
+﻿using ProductsAccountingNew.Data;
+using ProductsAccountingNew.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ProductsAccountingNew.Services
 {
-    public class ShoppingListService
+    public class ShoppingListService : IShoppingListService
     {
-        //private static readonly Dictionary<int, List<ShoppingList>> shoppingLists = new Dictionary<int, List<ShoppingList>>
-        //{
-        //    [1] = new List<ShoppingList> {
-        //        new ShoppingList(Guid.NewGuid(), "bread", 2, 40, 1),
-        //        new ShoppingList(Guid.NewGuid(), "milk", 3, 100, 1),
-        //        new ShoppingList(Guid.NewGuid(), "chocolate", 1, 150, 1),
-        //    },
-        //};
-                
-        //public IEnumerable<ShoppingList> GetShoppingList(int user_id)
-        //{
-        //    user_id = 1;
-        //    return shoppingLists[user_id];
-        //}
+        private readonly TestDbContext _dbContext;
 
-        //public void AddProduct(string name, int count, int price, int user_id)
-        //{
-        //    user_id = 1;
-        //    shoppingLists[user_id].Add(new ShoppingList(Guid.NewGuid(), name, count, price, user_id));
-        //}
+        public ShoppingListService(TestDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
-        //public void DeleteProduct(Guid id, int user_id)
-        //{
-        //    List<ShoppingList> shoppingList = shoppingLists[user_id];
+        public IEnumerable<ShoppingList> GetShoppingList(Guid userId)
+        {
+            return _dbContext.ShoppingList.ToArray();
+        }
 
-        //    var existing = shoppingList.FirstOrDefault(x => x.Id == id);
-        //    if (existing == null)
-        //        return;           
-        //    shoppingList.Remove(existing);
-        //}
+        public void AddProduct(ShoppingList shoppingList)
+        {
+            _dbContext.ShoppingList.Add(shoppingList);
+            _dbContext.SaveChanges();
+        }
 
-        //public void BuyProduct(Guid id, string name, int count, int price, Guid userId)
-        //{
-        //    List<ShoppingList> shoppingList = shoppingLists[user_id];
+        public void DeleteProduct(Guid id, string name)
+        {
+            var existing = _dbContext.ShoppingList.FirstOrDefault(x => x.Name == name);
+            if (existing == null)
+                return;
 
-        //    var existing = shoppingList.FirstOrDefault(x => x.Id == id);
-        //    if (existing == null)
-        //        return;
+            _dbContext.ShoppingList.Remove(existing);
+            _dbContext.SaveChanges();            
+        }
 
-        //    ProductsOfUserService.(id, new ProductWithPrice(name, count, price), userId);
+        public void BuyProduct(Guid id, string name, int count, int price, Guid userId)
+        {
+            var existing = _dbContext.ShoppingList.FirstOrDefault(x => x.Name == name);
+            if (existing == null)
+                return;
 
-        //    shoppingList.Remove(existing);
-        //}
+            _dbContext.ProductsOfUsers.Add(new ProductOfUser(id, name, count, userId));
 
-        //public void UpdateUser(int user_id, Guid product_id)
-        //{
-        //    List<ShoppingList> shoppingList = shoppingLists[user_id];
+            _dbContext.ShoppingList.Remove(existing);
+            _dbContext.SaveChanges();
 
-        //    var existing = shoppingList.FirstOrDefault(x => x.Id == product_id);
-        //    if (existing == null)
-        //        return;
+        }
 
-        //    existing.Name = shoppingList[0].Name;
-        //    existing.Price = shoppingList[0].Price;
-        //    existing.Count = shoppingList[0].Count;
-        //}
+        public void UpdateProduct(ShoppingList shoppingList)
+        {
+            var existing = _dbContext.ShoppingList.FirstOrDefault(x => x.Name == shoppingList.Name);
+            if (existing == null)
+                return;
+
+            existing.Name = shoppingList.Name;
+            existing.Price = shoppingList.Price;
+            existing.Count = shoppingList.Count;
+
+            _dbContext.SaveChanges();
+
+        }
 
     }
 }
