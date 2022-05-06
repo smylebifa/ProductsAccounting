@@ -41,18 +41,7 @@ namespace ProductsAccountingNew.Services
             // ProductsOfUsersService.AddProductToUser(new ProductOfUser(id, name, count, userId));
 
             ShoppingListOfAllUsers.Remove(existing);
-        }
-
-        public void UpdateProduct(ShoppingList shoppingList)
-        {
-            var existing = ShoppingListOfAllUsers.FirstOrDefault(x => x.Name == shoppingList.Name);
-            if (existing == null)
-                return;
-
-            existing.Name = shoppingList.Name;
-            existing.Price = shoppingList.Price;
-            existing.Count = shoppingList.Count;
-        }
+        }        
 
     }
 }

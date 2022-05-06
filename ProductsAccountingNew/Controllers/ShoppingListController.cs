@@ -19,9 +19,11 @@ namespace ProductsAccountingNew.Controllers
             _shoppingListService = shoppingListService;
         }
 
-        public IActionResult Index(Guid userId)
+        public IActionResult Index()
         {
-            var shoppingList = _shoppingListService.GetShoppingList(userId);
+            string userName = User.Identity.Name;
+
+            var shoppingList = _shoppingListService.GetShoppingList(userName);
             ViewBag.ShoppingList = shoppingList;
             return View();
         }
@@ -29,23 +31,29 @@ namespace ProductsAccountingNew.Controllers
         [HttpPost]
         public IActionResult ShoppingList(ShoppingList shoppingList)
         {
-            _shoppingListService.AddProduct(shoppingList);
+            string userName = User.Identity.Name;
+
+            _shoppingListService.AddProduct(userName, shoppingList);
             return RedirectToAction(nameof(Index));
         }
 
         
-        [HttpPost("/shopping_list/buy_product/{id}/{name}/{count}/{price}/{userId}")]
-        public IActionResult BuyProduct(Guid id, string name, int count, int price, Guid userId)
+        [HttpPost("/shopping_list/buy_product/{productId}/{productName}/{count}/{price}")]
+        public IActionResult BuyProduct(Guid productId, string productName, int count, int price)
         {
-            _shoppingListService.BuyProduct(id, name, count, price, userId);
+            string userName = User.Identity.Name;
+
+            _shoppingListService.BuyProduct(userName, productId, productName, count, price);
             return Ok();
         }
 
         
-        [HttpDelete("/shopping_list/delete_product/{id}/{name}")]
-        public IActionResult Delete(Guid id, string name)
+        [HttpDelete("/shopping_list/delete_product/{productName}")]
+        public IActionResult DeleteProduct(string productName)
         {
-            _shoppingListService.DeleteProduct(id, name);
+            string userName = User.Identity.Name;
+
+            _shoppingListService.DeleteProduct(userName, productName);
             return Ok();
         }
     }

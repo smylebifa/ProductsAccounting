@@ -42,6 +42,7 @@ namespace ProductsAccountingNew.Controllers
             if (!_authenticationService.Login(username, password))
                 throw new InvalidOperationException();
 
+            
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));

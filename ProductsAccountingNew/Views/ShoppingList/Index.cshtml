@@ -12,8 +12,8 @@
             <td>@shoppingList.Name</td>
             <td>@shoppingList.Count</td>
             <td>@shoppingList.Price</td>
-            <td><a onclick="addProduct('@shoppingList.Id' , '@shoppingList.Name' , '@shoppingList.Count', '@shoppingList.Price'  , '@shoppingList.UserId')" href="#">buy product</a></td>
-            <td><a onclick="deleteProduct('@shoppingList.Id' , '@shoppingList.Name')" href="#">delete</a></td>
+            <td><a onclick="addProduct('@shoppingList.Id' , '@shoppingList.Name' , '@shoppingList.Count', '@shoppingList.Price')" href="#">buy product</a></td>
+            <td><a onclick="deleteProduct('@shoppingList.Name')" href="#">delete</a></td>
         </tr>
     }
 </table>
@@ -49,9 +49,9 @@
 
 
 <script type="text/javascript">
-    function addProduct(productId, name, count, price, userId) {
+    function addProduct(productId, name, count, price) {
         $.ajax({
-            url: '/shopping_list/buy_product/' + productId + '/' + name + '/' + count + '/' + price + '/' + userId,
+            url: '/shopping_list/buy_product/' + productId + '/' + name + '/' + count + '/' + price,
             type: 'POST',
             contentType: "application/json; charset=utf-8",
             success: function () {
@@ -66,9 +66,9 @@
 
 
 <script type="text/javascript">
-    function deleteProduct(productId, name) {
+    function deleteProduct(name) {
         $.ajax({
-            url: '/shopping_list/delete_product/' + productId + '/' + name,
+            url: '/shopping_list/delete_product/' + name,
             type: 'DELETE',
             contentType: "application/json; charset=utf-8",
             success: function () {
