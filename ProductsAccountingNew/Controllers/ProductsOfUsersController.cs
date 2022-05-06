@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProductsAccountingNew.Models;
 using ProductsAccountingNew.Services;
@@ -6,6 +7,7 @@ using System;
 
 namespace ProductsAccountingNew.Controllers
 {
+    [Authorize]
     public class ProductsOfUsersController : Controller
     {
         private readonly ILogger<ProductsOfUsersController> _logger;
@@ -16,9 +18,11 @@ namespace ProductsAccountingNew.Controllers
             _productsService = productsService;
         }
         
-        public IActionResult Index(Guid userId)
+        public IActionResult Index()
         {
-            var products = _productsService.GetProducts(userId);
+            string nameOfCurrentUser = User.Identity.Name;
+
+            var products = _productsService.GetProducts(nameOfCurrentUser);
             ViewBag.ProductsOfUsers = products;
             return View();
         }
@@ -26,7 +30,9 @@ namespace ProductsAccountingNew.Controllers
         [HttpPost]
         public IActionResult ProductsOfUsers(ProductOfUser productOfUser)
         {
-            _productsService.AddProductToUser(productOfUser);
+            string nameOfCurrentUser = User.Identity.Name;
+
+            _productsService.AddProductToUser(nameOfCurrentUser, productOfUser);
             return RedirectToAction(nameof(Index));
         }
 

@@ -46,7 +46,7 @@ namespace ProductsAccountingNew.Controllers
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
             
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Index", "ProductsOfUsers");
         }
 
         [HttpGet("/logout")]

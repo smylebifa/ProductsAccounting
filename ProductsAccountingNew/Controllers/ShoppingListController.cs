@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProductsAccountingNew.Models;
 using ProductsAccountingNew.Services;
@@ -6,6 +7,7 @@ using System;
 
 namespace ProductsAccountingNew.Controllers
 {
+    [Authorize]
     public class ShoppingListController : Controller
     {
         private readonly ILogger<ShoppingListController> _logger;

@@ -15,13 +15,13 @@ namespace ProductsAccountingNew.Services
                 new ProductOfUser(Guid.NewGuid(), "milk", 1, Guid.NewGuid()),
         };
 
-        public void AddProductToUser(ProductOfUser productOfUser)
+        public void AddProductToUser(string nameOfUser, ProductOfUser productOfUser)
         {
             ProductsOfUsers.Add(productOfUser);
         }
 
 
-        public IEnumerable<ProductOfUser> GetProducts(Guid userId)
+        public IEnumerable<ProductOfUser> GetProducts()
         {
             return ProductsOfUsers;
         }

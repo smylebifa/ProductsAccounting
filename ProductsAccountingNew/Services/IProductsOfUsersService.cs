@@ -6,9 +6,9 @@ namespace ProductsAccountingNew.Services
 {
     public interface IProductsOfUsersService
     {
-        public IEnumerable<ProductOfUser> GetProducts(Guid userId);
+        public IEnumerable<ProductOfUser> GetProducts(string nameOfUser);
 
-        public void AddProductToUser(ProductOfUser productOfUser);
+        public void AddProductToUser(string nameOfUser, ProductOfUser productOfUser);
 
         public void DeleteProduct(Guid id, Guid userId);
     }

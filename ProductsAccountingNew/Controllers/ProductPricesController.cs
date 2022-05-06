@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProductsAccountingNew.Models;
@@ -10,6 +8,7 @@ using ProductsAccountingNew.Services;
 
 namespace ProductsAccountingNew.Controllers
 {
+    [Authorize]
     public class ProductPricesController : Controller
     {
         private readonly ILogger<ProductPricesController> _logger;
