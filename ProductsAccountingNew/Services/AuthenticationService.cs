@@ -25,15 +25,15 @@ namespace ProductsAccountingNew.Services
                 return person.Id;
 
             var salt = RandomString(10);
-            var newPerson = new Person()
-            {
-                Id = Guid.NewGuid(),
-                UserName = userName,
-                PasswordHash = Hash(password + salt),
-                Salt = salt,
-            };
+
+            Guid Id = Guid.NewGuid();
+            
+            var newPerson = new Person () { Id = Id, UserName = userName, PasswordHash = Hash(password + salt), Salt = salt };
 
             _dbContext.Persons.Add(newPerson);
+
+            _dbContext.Users.Add(new User(Id, userName, "", 0));
+
             _dbContext.SaveChanges();
             return newPerson.Id;
         }
@@ -48,6 +48,7 @@ namespace ProductsAccountingNew.Services
             return person.PasswordHash == Hash(password + person.Salt);
         }
 
+        // Вычисляем хеш по паролю с помощью криптографического алгоритма SHA256 
         private string Hash(string password)
         {
             var algorithm = HashAlgorithm.Create("SHA256");
@@ -55,6 +56,7 @@ namespace ProductsAccountingNew.Services
             return Convert.ToBase64String(algorithm!.ComputeHash(passwordBytes));
         }
 
+        // Генерируем рандомную строку заданной длины
         public static string RandomString(int length)
         {
             var random = new Random();

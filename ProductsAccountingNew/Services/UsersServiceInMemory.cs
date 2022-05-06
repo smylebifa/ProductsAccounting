@@ -10,9 +10,9 @@ namespace ProductsAccountingNew.Services
     {
         private static readonly List<User> Users = new List<User>
         {
-                new User(Guid.NewGuid(), "Kolya", "kolya@mail.ru", "Moscow"),
-                new User(Guid.NewGuid(), "Petya", "petya@mail.ru", "Moscow"),
-                new User(Guid.NewGuid(), "Anya", "anya@mail.ru", "Moscow"),
+                new User(Guid.NewGuid(), "Kolya", "kolya@mail.ru", 400),
+                new User(Guid.NewGuid(), "Petya", "petya@mail.ru", 500),
+                new User(Guid.NewGuid(), "Anya", "anya@mail.ru", 1000),
         };
 
         public IEnumerable<User> GetUsers()
@@ -32,7 +32,7 @@ namespace ProductsAccountingNew.Services
             var existing = Users.FirstOrDefault(x => x.Id == user.Id);
             if (existing == null)
                 return;
-            existing.Address = user.Address;
+            existing.Cash = user.Cash;
             existing.Email = user.Email;
             existing.Name = user.Name;
         }

@@ -7,15 +7,15 @@ namespace ProductsAccountingNew.Models
         public Guid Id { get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }
-        public string? Address { get; set; }
+        public int? Cash { get; set; }
        
 
-        public User(Guid id, string? name, string? email, string? address)
+        public User(Guid id, string? name, string? email, int? cash)
         {
             Id = id;
             Name = name;
             Email = email;
-            Address = address;
+            Cash = cash;
         }
         public User()
         {

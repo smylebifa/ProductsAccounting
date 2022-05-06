@@ -3,6 +3,8 @@ using ProductsAccountingNew.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 
 // Существует список пользователей, который доступен для просмотра и редактирования админом
@@ -28,6 +30,18 @@ namespace ProductsAccountingNew.Services
                 throw new ArgumentException("User with such name already exists.");
             
             _dbContext.Users.Add(user);
+
+            var salt = RandomString(10);
+            var newPerson = new Person()
+            {
+                Id = Guid.NewGuid(),
+                UserName = user.Name,
+                PasswordHash = Hash("" + salt),
+                Salt = salt,
+            };
+
+            _dbContext.Persons.Add(newPerson);
+        
             _dbContext.SaveChanges();
         }
 
@@ -38,7 +52,7 @@ namespace ProductsAccountingNew.Services
             if (existing == null)
                 return;
 
-            existing.Address = user.Address;
+            existing.Cash = user.Cash;
             existing.Email = user.Email;
             existing.Name = user.Name;
 
@@ -54,6 +68,21 @@ namespace ProductsAccountingNew.Services
 
             _dbContext.Users.Remove(existing);
             _dbContext.SaveChanges();
+        }
+
+        private string Hash(string password)
+        {
+            var algorithm = HashAlgorithm.Create("SHA256");
+            var passwordBytes = Encoding.UTF8.GetBytes(password);
+            return Convert.ToBase64String(algorithm!.ComputeHash(passwordBytes));
+        }
+
+        public static string RandomString(int length)
+        {
+            var random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+                                        .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
     }

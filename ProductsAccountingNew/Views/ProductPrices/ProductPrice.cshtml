@@ -1,30 +1,28 @@
-﻿@model ProductsAccountingNew.Models.User;
+﻿@*@{
+        ViewData["Title"] = "ProductPrice";
+    }*@
+
+@model ProductsAccountingNew.Models.ProductPrice;
 
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
-@using (Html.BeginForm("Edit", "Users", FormMethod.Post))
+@using (Html.BeginForm("Edit", "ProductPrices", FormMethod.Post))
 {
     <table>
         @Html.HiddenFor(m => m.Id)
         <tr>
-            <td>Имя:</td>
+            <td>Название:</td>
             <td>
                 @Html.TextBoxFor(m => m.Name)
             </td>
         </tr>
         <tr>
-            <td>Email:</td>
+            <td>Цена:</td>
             <td>
-                @Html.TextBoxFor(m => m.Email)
-            </td>
-        </tr>
-        <tr>
-            <td>Адрес:</td>
-            <td>
-                @Html.TextBoxFor(m => m.Cash)
+                @Html.TextBoxFor(m => m.Price)
             </td>
         </tr>
         <tr>
@@ -33,6 +31,5 @@
             </td>
             <td></td>
         </tr>
-
     </table>
 }
