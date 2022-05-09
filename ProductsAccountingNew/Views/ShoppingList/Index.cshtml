@@ -1,21 +1,34 @@
 ﻿@model ProductsAccountingNew.Models.ShoppingList;
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Список покупок";
     Layout = "_Layout";
 }
 
-<table class="table">
-    @foreach (var shoppingList in @ViewBag.ShoppingList)
-    {
+<table class="table table-hover" style="text-align: center;">
+
+    <thead class="thead-dark">
         <tr>
-            <td>@shoppingList.Name</td>
-            <td>@shoppingList.Count</td>
-            <td>@shoppingList.Price</td>
-            <td><a onclick="addProduct('@shoppingList.Id' , '@shoppingList.Name' , '@shoppingList.Count', '@shoppingList.Price')" href="#">buy product</a></td>
-            <td><a onclick="deleteProduct('@shoppingList.Name')" href="#">delete</a></td>
+            <th scope="col">Название продукта</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
-    }
+    </thead>
+
+    <tbody>
+        @foreach (var shoppingList in @ViewBag.ShoppingList)
+        {
+            <tr>
+                <td>@shoppingList.Name</td>
+                <td>@shoppingList.Count</td>
+                <td>@shoppingList.Price</td>
+                <td><a onclick="addProduct('@shoppingList.Id' , '@shoppingList.Name' , '@shoppingList.Count', '@shoppingList.Price')" href="#"> купить </a></td>
+                <td><a onclick="deleteProduct('@shoppingList.Name')" href="#"> удалить </a></td>
+            </tr>
+        }
+    </tbody>
 </table>
 <form method="post" asp-action="ShoppingList">
     <table>

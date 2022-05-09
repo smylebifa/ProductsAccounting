@@ -4,17 +4,28 @@
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
+<table class="table table-hover" style="text-align: center;">
 
-<table class="table">
-    @foreach (var price in @ViewBag.ProductPrices)
-    {
+    <thead class="thead-dark">
         <tr>
-            <td>@price.Name</td>
-            <td>@price.Price</td>
-            <td>@Html.ActionLink("change_price", "ProductPrice", new { id = price.Id })</td>
-            <td><a onclick="deletePrice('@price.Id')" href="#"> delete </a></td>
+            <th scope="col">Название продукта</th>
+            <th scope="col">Цена</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
-    }
+    </thead>
+
+    <tbody>
+        @foreach (var price in @ViewBag.ProductPrices)
+        {
+            <tr>
+                <td>@price.Name</td>
+                <td>@price.Price</td>
+                <td>@Html.ActionLink("change_price", "ProductPrice", new { id = price.Id })</td>
+                <td><a onclick="deletePrice('@price.Id')" href="#"> удалить </a></td>
+            </tr>
+        }
+    </tbody>
 </table>
 
 <form method="post" asp-action="ProductPrices">

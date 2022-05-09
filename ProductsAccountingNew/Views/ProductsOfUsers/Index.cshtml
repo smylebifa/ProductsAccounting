@@ -5,25 +5,38 @@
     Layout = "_Layout";
 }
 
-<table class="table">
-    @foreach (var products in @ViewBag.ProductsOfUsers)
-    {
-    <tr>
-        <td>@products.ProductName</td>
-        <td>@products.Count</td>        
-        <td><a onclick="deleteProduct('@products.Id')" href="#"> delete </a></td>
-    </tr>
-    }
+<table class="table table-hover" style="text-align: center;">
+
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Название продукта</th>
+            <th scope="col">Количество</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var products in @ViewBag.ProductsOfUsers)
+        {
+            <tr>
+                <td>@products.ProductName</td>
+                <td>@products.Count</td>
+                <td><a onclick="deleteProduct('@products.Id')" href="#"> удалить </a></td>
+            </tr>
+        }
+
+    </tbody>
 </table>
 
 <form method="post" asp-action="ProductsOfUsers">
     <table>
         <tr>
-            <td>Название:</td>
+            <td>Название продукта:</td>
             <td>
                 <input type="text" name="ProductName" />
             </td>
-        </tr>        
+        </tr>
         <tr>
             <td>Количество:</td>
             <td>
