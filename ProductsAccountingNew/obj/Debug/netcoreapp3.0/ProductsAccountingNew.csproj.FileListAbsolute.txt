@@ -179,3 +179,6 @@ E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\ProductsAccountingNew.MvcApplicationPartsAssemblyInfo.cache
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ProductPrices\Index.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ProductPrices\ProductPrice.cshtml.g.cs
+E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\Web.config
+E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Errors\Forbidden.cshtml.g.cs
+E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Errors\NotFound.cshtml.g.cs

@@ -60,12 +60,28 @@ namespace ProductsAccountingNew.Services
                 _dbContext.ProductsOfUsers.Add(new ProductOfUser(productId, productName, count, userId));
             else
             {
-                existing.Count += count;
-                _dbContext.ProductsOfUsers.Remove(existing);
+                var user = _dbContext.Users.FirstOrDefault(x => x.Id == userId);
 
-                _dbContext.SaveChanges();
+                if (user.Cash >= price * count)
+                {
+                    _dbContext.ProductsOfUsers.Remove(existing);
+                    
+                    existing.Count += count;
 
-                _dbContext.ProductsOfUsers.Add(existing);
+                    _dbContext.SaveChanges();
+
+                    _dbContext.ProductsOfUsers.Add(existing);
+
+                    
+                    _dbContext.Users.Remove(user);
+
+                    user.Cash -= price * count;
+
+                    _dbContext.SaveChanges();
+
+                    _dbContext.Users.Add(user);
+
+                }
             }
 
             _dbContext.SaveChanges();
