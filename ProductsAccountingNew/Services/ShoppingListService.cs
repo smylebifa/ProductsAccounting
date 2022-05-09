@@ -49,13 +49,25 @@ namespace ProductsAccountingNew.Services
         {
             var userId = _dbContext.Users.ToList().Find(item => item.Name == userName).Id;
 
-            var existing = _dbContext.ShoppingList.FirstOrDefault(x => x.Name == productName && x.UserId == userId);
-            if (existing == null)
+            var ProductInShoppingList = _dbContext.ShoppingList.FirstOrDefault(x => x.Name == productName && x.UserId == userId);
+            if (ProductInShoppingList == null)
                 return;
 
-            _dbContext.ProductsOfUsers.Add(new ProductOfUser(productId, productName, count, userId));
+            _dbContext.ShoppingList.Remove(ProductInShoppingList);
 
-            _dbContext.ShoppingList.Remove(existing);
+            var existing = _dbContext.ProductsOfUsers.FirstOrDefault(x => x.ProductName == productName && x.UserId == userId);
+            if (existing == null)
+                _dbContext.ProductsOfUsers.Add(new ProductOfUser(productId, productName, count, userId));
+            else
+            {
+                existing.Count += count;
+                _dbContext.ProductsOfUsers.Remove(existing);
+
+                _dbContext.SaveChanges();
+
+                _dbContext.ProductsOfUsers.Add(existing);
+            }
+
             _dbContext.SaveChanges();
 
         }

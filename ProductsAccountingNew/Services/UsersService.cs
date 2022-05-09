@@ -16,7 +16,7 @@ namespace ProductsAccountingNew.Services
 
         public UsersService(TestDbContext dbContext)
         {
-            _dbContext = dbContext;           
+            _dbContext = dbContext;
         }
 
         public IEnumerable<User> GetUsers()
@@ -28,7 +28,7 @@ namespace ProductsAccountingNew.Services
         {
             if (_dbContext.Users.Any(x => x.Name == user.Name))
                 throw new ArgumentException("User with such name already exists.");
-            
+
             _dbContext.Users.Add(user);
 
             var salt = RandomString(10);
@@ -41,7 +41,7 @@ namespace ProductsAccountingNew.Services
             };
 
             _dbContext.Persons.Add(newPerson);
-        
+
             _dbContext.SaveChanges();
         }
 

@@ -41,7 +41,7 @@ namespace ProductsAccountingNew.Services
             // ProductsOfUsersService.AddProductToUser(new ProductOfUser(id, name, count, userId));
 
             ShoppingListOfAllUsers.Remove(existing);
-        }        
+        }
 
     }
 }

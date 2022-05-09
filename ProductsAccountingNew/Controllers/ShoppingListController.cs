@@ -37,7 +37,7 @@ namespace ProductsAccountingNew.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+
         [HttpPost("/shopping_list/buy_product/{productId}/{productName}/{count}/{price}")]
         public IActionResult BuyProduct(Guid productId, string productName, int count, int price)
         {
@@ -47,7 +47,7 @@ namespace ProductsAccountingNew.Controllers
             return Ok();
         }
 
-        
+
         [HttpDelete("/shopping_list/delete_product/{productName}")]
         public IActionResult DeleteProduct(string productName)
         {

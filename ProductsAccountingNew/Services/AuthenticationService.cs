@@ -27,8 +27,8 @@ namespace ProductsAccountingNew.Services
             var salt = RandomString(10);
 
             Guid Id = Guid.NewGuid();
-            
-            var newPerson = new Person () { Id = Id, UserName = userName, PasswordHash = Hash(password + salt), Salt = salt };
+
+            var newPerson = new Person() { Id = Id, UserName = userName, PasswordHash = Hash(password + salt), Salt = salt };
 
             _dbContext.Persons.Add(newPerson);
 

@@ -20,7 +20,6 @@ E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\ProductsAccountingNew.TagHelpers.output.cache
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\ProductsAccountingNew.RazorCoreGenerate.cache
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
-E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Home\Privacy.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -110,7 +109,6 @@ E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ShoppingList\Index.cshtml.g.cs
-E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ShoppingList\ShoppingList.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Users\Index.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Users\User.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Caching.Abstractions.dll

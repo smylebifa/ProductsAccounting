@@ -1,7 +1,7 @@
 ﻿@model ProductsAccountingNew.Models.ProductOfUser;
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Список продуктов";
     Layout = "_Layout";
 }
 
@@ -29,8 +29,11 @@
     </tbody>
 </table>
 
-<form method="post" asp-action="ProductsOfUsers">
-    <table>
+<form method="post" asp-action="ProductsOfUsers" class="my-5">
+
+    <table col-lg-5">
+        <h4>Добавление продуктов</h4>
+
         <tr>
             <td>Название продукта:</td>
             <td>
@@ -45,7 +48,7 @@
         </tr>
         <tr>
             <td>
-                <input type="submit" value="Send" />
+                <input type="submit" value="Добавить" />
             </td>
             <td></td>
         </tr>

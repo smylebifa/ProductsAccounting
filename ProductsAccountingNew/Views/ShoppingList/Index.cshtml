@@ -24,14 +24,16 @@
                 <td>@shoppingList.Name</td>
                 <td>@shoppingList.Count</td>
                 <td>@shoppingList.Price</td>
-                <td><a onclick="addProduct('@shoppingList.Id' , '@shoppingList.Name' , '@shoppingList.Count', '@shoppingList.Price')" href="#"> купить </a></td>
+                <td><a onclick="buyProduct('@shoppingList.Id' , '@shoppingList.Name' , '@shoppingList.Count', '@shoppingList.Price')" href="#"> купить </a></td>
                 <td><a onclick="deleteProduct('@shoppingList.Name')" href="#"> удалить </a></td>
             </tr>
         }
     </tbody>
 </table>
-<form method="post" asp-action="ShoppingList">
-    <table>
+<form method="post" asp-action="ShoppingList" class="my-5">
+    <table col-lg-5">
+        <h4>Добавление продуктов</h4>
+
         <tr>
             <td>Название:</td>
             <td>
@@ -52,7 +54,7 @@
         </tr>
         <tr>
             <td>
-                <input type="submit" value="Send" />
+                <input type="submit" value="Добавить" />
             </td>
             <td></td>
         </tr>
@@ -62,7 +64,7 @@
 
 
 <script type="text/javascript">
-    function addProduct(productId, name, count, price) {
+    function buyProduct(productId, name, count, price) {
         $.ajax({
             url: '/shopping_list/buy_product/' + productId + '/' + name + '/' + count + '/' + price,
             type: 'POST',

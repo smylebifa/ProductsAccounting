@@ -17,7 +17,7 @@ namespace ProductsAccountingNew.Controllers
             _logger = logger;
             _productsService = productsService;
         }
-        
+
         public IActionResult Index()
         {
             string nameOfCurrentUser = User.Identity.Name;

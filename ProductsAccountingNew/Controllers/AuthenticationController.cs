@@ -18,7 +18,7 @@ namespace ProductsAccountingNew.Controllers
         {
             _authenticationService = authenticationService;
         }
-        
+
         [HttpGet("/login")]
         public IActionResult Index()
         {
@@ -42,11 +42,11 @@ namespace ProductsAccountingNew.Controllers
             if (!_authenticationService.Login(username, password))
                 throw new InvalidOperationException();
 
-            
+
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-            
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -55,7 +55,7 @@ namespace ProductsAccountingNew.Controllers
         {
             var context = HttpContext;
             await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            
+
             return RedirectToAction("Index", "Authentication");
         }
 

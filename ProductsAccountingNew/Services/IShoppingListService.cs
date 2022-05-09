@@ -12,6 +12,6 @@ namespace ProductsAccountingNew.Services
         public void AddProduct(string userName, ShoppingList shoppingList);
         public void DeleteProduct(string userName, string productName);
         public void BuyProduct(string userName, Guid productId, string productName, int count, int price);
-     
+
     }
 }

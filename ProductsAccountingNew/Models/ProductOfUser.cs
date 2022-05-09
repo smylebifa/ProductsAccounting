@@ -10,7 +10,7 @@ namespace ProductsAccountingNew.Models
         public int Count { get; set; }
         public Guid UserId { get; set; }
 
-        
+
         public ProductOfUser(Guid id, string productName, int count, Guid userId)
         {
             Id = id;

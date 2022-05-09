@@ -1,7 +1,7 @@
 ﻿@model ProductsAccountingNew.Models.User;
 
 @{
-    ViewBag.Title = "Пользователи системы";
+    ViewBag.Title = "Пользователи";
     Layout = "_Layout";
 }
 
@@ -24,14 +24,16 @@
                 <td>@user.Name</td>
                 <td>@user.Email</td>
                 <td>@user.Cash</td>
-                <td>@Html.ActionLink("edit", "User", new { id = user.Id })</td>
+                <td>@Html.ActionLink("изменить", "User", new { id = user.Id })</td>
                 <td><a onclick="deleteUser('@user.Id')" href="#"> удалить </a></td>
             </tr>
         }
     </tbody>
 </table>
-<form method="post" asp-action="Users">
-    <table>
+<form method="post" asp-action="Users" class="my-5">
+    <table col-lg-5">
+        <h4>Добавление пользователей</h4>
+
         <tr>
             <td>Имя:</td>
             <td>
@@ -45,14 +47,14 @@
             </td>
         </tr>
         <tr>
-            <td>Адрес:</td>
+            <td>Счет:</td>
             <td>
                 <input type="text" name="Cash" />
             </td>
         </tr>
         <tr>
             <td>
-                <input type="submit" value="Send" />
+                <input type="submit" value="Отправить" />
             </td>
             <td></td>
         </tr>

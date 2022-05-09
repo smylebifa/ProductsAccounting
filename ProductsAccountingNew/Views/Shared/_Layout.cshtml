@@ -23,7 +23,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Пользователи</a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="ProductPrices" asp-action="Index">Цены на продукты</a>
                             </li>
@@ -47,23 +47,19 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="ProductsOfUsers" asp-action="Index">Мои продукты</a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingList" asp-action="Index">Список покупок</a>
                             </li>
-                            
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="ProductPrices" asp-action="Index">Цены на продукты</a>
-                            </li>
-                            
+
                             <li class="nav-item">
                                 <a id="login-link" class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Index">Вход</a>
                             </li>
-                           
+
                             <li class="nav-item" id="register-menu">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="RegisterPage">Регистрация</a>
                             </li>
-                            
+
                             <li class="nav-item" id="logout-menu">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Logout">Выйти</a>
                             </li>
@@ -82,7 +78,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - ProductsAccountingNew - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            Автор: Самойлов Илья
         </div>
     </footer>
 
@@ -92,21 +88,21 @@
     @RenderSection("Scripts", required: false)
 
     <script type="text/javascript">
-    $.ajax({
-    url: '/authenticated',
-    type: 'GET',
-    contentType: "application/json; charset=utf-8",
-    success: function(data) {
-    document.getElementById("login-link").innerText = data;
-    document.getElementById("logout-menu").style.display = "block";
-    document.getElementById("register-menu").style.display = "none";
-    },
-    error: function() {
-    document.getElementById("login-link").innerText = "Login";
-    document.getElementById("logout-menu").style.display = "none";
-    document.getElementById("register-menu").style.display = "block";
-    }
-    })
+        $.ajax({
+            url: '/authenticated',
+            type: 'GET',
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                document.getElementById("login-link").innerText = data;
+                document.getElementById("logout-menu").style.display = "block";
+                document.getElementById("register-menu").style.display = "none";
+            },
+            error: function () {
+                document.getElementById("login-link").innerText = "Login";
+                document.getElementById("logout-menu").style.display = "none";
+                document.getElementById("register-menu").style.display = "block";
+            }
+        })
     </script>
 
 </body>

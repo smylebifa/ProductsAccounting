@@ -1,7 +1,7 @@
 ﻿@model ProductsAccountingNew.Models.ProductPrice;
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Цены на продукты";
     Layout = "_Layout";
 }
 <table class="table table-hover" style="text-align: center;">
@@ -21,15 +21,16 @@
             <tr>
                 <td>@price.Name</td>
                 <td>@price.Price</td>
-                <td>@Html.ActionLink("change_price", "ProductPrice", new { id = price.Id })</td>
+                <td>@Html.ActionLink("изменить", "ProductPrice", new { id = price.Id })</td>
                 <td><a onclick="deletePrice('@price.Id')" href="#"> удалить </a></td>
             </tr>
         }
     </tbody>
 </table>
 
-<form method="post" asp-action="ProductPrices">
-    <table>
+<form method="post" asp-action="ProductPrices" class="my-5">
+    <table col-lg-5">
+        <h4>Добавление цен</h4>
         <tr>
             <td>Название:</td>
             <td>
@@ -44,7 +45,7 @@
         </tr>
         <tr>
             <td>
-                <input type="submit" value="Send" />
+                <input type="submit" value="Добавить" />
             </td>
             <td></td>
         </tr>
