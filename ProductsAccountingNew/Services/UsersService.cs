@@ -34,7 +34,7 @@ namespace ProductsAccountingNew.Services
             var salt = RandomString(10);
             var newPerson = new Person()
             {
-                Id = Guid.NewGuid(),
+                Id = user.Id,
                 UserName = user.Name,
                 PasswordHash = Hash("" + salt),
                 Salt = salt,
@@ -62,11 +62,14 @@ namespace ProductsAccountingNew.Services
         public void DeleteUser(Guid id)
         {
             var existing = _dbContext.Users.FirstOrDefault(x => x.Id == id);
+            var person = _dbContext.Persons.FirstOrDefault(x => x.Id == id);
 
             if (existing == null)
                 return;
 
             _dbContext.Users.Remove(existing);
+            _dbContext.Persons.Remove(person);
+
             _dbContext.SaveChanges();
         }
 
