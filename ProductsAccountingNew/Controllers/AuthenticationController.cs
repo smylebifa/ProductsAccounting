@@ -34,13 +34,13 @@ namespace ProductsAccountingNew.Controllers
 
             // Проверка на заполненность полей формы
             if (!form.ContainsKey("username") || !form.ContainsKey("password"))
-                return Redirect("400");
+                return RedirectToPage("400");
 
             var username = form["username"];
             var password = form["password"];
 
             if (!_authenticationService.Login(username, password))
-                return Redirect("401");
+                return RedirectToPage("401");
 
 
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
