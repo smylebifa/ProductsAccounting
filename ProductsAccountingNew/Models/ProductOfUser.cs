@@ -18,11 +18,5 @@ namespace ProductsAccountingNew.Models
             UserId = userId;
         }
 
-        public ProductOfUser()
-        {
-            Id = Guid.NewGuid();
-            UserId = Guid.NewGuid();
-        }
-
     }
 }

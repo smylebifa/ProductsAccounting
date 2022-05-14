@@ -52,9 +52,9 @@ namespace ProductsAccountingNew.Services
             if (existing == null)
                 return;
 
-            existing.Cash = user.Cash;
-            existing.Email = user.Email;
             existing.Name = user.Name;
+            existing.Email = user.Email;
+            existing.Cash = user.Cash;
 
             _dbContext.SaveChanges();
         }

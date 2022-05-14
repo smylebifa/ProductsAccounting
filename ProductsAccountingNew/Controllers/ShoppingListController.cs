@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using ProductsAccountingNew.Models;
 using ProductsAccountingNew.Services;
@@ -25,6 +26,14 @@ namespace ProductsAccountingNew.Controllers
 
             var shoppingList = _shoppingListService.GetShoppingList(userName);
             ViewBag.ShoppingList = shoppingList;
+
+            ViewBag.Balance = _shoppingListService.GetBalance(userName);
+
+            var productNamesAndPrices = _shoppingListService.GetProductNamesAndPrices();
+
+            ViewBag.ProductNames = new SelectList(productNamesAndPrices, "Name");
+
+
             return View();
         }
 
@@ -32,8 +41,8 @@ namespace ProductsAccountingNew.Controllers
         public IActionResult ShoppingList(ShoppingList shoppingList)
         {
             string userName = User.Identity.Name;
+            _shoppingListService.AddProduct(userName, shoppingList.Name, shoppingList.Count);
 
-            _shoppingListService.AddProduct(userName, shoppingList);
             return RedirectToAction(nameof(Index));
         }
 
@@ -44,6 +53,7 @@ namespace ProductsAccountingNew.Controllers
             string userName = User.Identity.Name;
 
             _shoppingListService.BuyProduct(userName, productId, productName, count, price);
+
             return Ok();
         }
 

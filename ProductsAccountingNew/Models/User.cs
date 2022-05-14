@@ -8,8 +8,7 @@ namespace ProductsAccountingNew.Models
         public string? Name { get; set; }
         public string? Email { get; set; }
         public int? Cash { get; set; }
-
-
+        
         public User(Guid id, string? name, string? email, int? cash)
         {
             Id = id;
@@ -17,6 +16,7 @@ namespace ProductsAccountingNew.Models
             Email = email;
             Cash = cash;
         }
+
         public User()
         {
             Id = Guid.NewGuid();

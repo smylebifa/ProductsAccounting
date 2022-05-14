@@ -11,7 +11,7 @@
         <tr>
             <th scope="col">Имя пользователя</th>
             <th scope="col">Почта</th>
-            <th scope="col">Счет</th>
+            <th scope="col">Баланс</th>
             <th scope="col"></th>
             <th scope="col"></th>
         </tr>
@@ -30,51 +30,51 @@
         }
     </tbody>
 </table>
-<form method="post" asp-action="Users" class="my-5">
-    <table col-lg-5">
-        <h4>Добавление пользователей</h4>
+    <form method="post" asp-action="Users" class="my-5 col-5" style="border-style: dashed; border-width:thin; border-color: #343a40; padding: 8px; ">
+        <table>
+            <h4>Добавление пользователей</h4>
 
-        <tr>
-            <td>Имя:</td>
-            <td>
-                <input type="text" name="Name" />
-            </td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td>
-                <input type="text" name="Email" />
-            </td>
-        </tr>
-        <tr>
-            <td>Счет:</td>
-            <td>
-                <input type="text" name="Cash" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" value="Отправить" />
-            </td>
-            <td></td>
-        </tr>
+            <tr>
+                <td style="padding: 4px;">Имя:</td>
+                <td style="padding: 4px;">
+                    <input type="text" name="Name" />
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 4px;">Электронная почта:</td>
+                <td style="padding: 4px;">
+                    <input type="text" name="Email" />
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 4px;">Баланс:</td>
+                <td style="padding: 4px;">
+                    <input type="text" name="Cash" />
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 2px;">
+                    <input type="submit" value="Отправить" />
+                </td>
+                <td></td>
+            </tr>
 
-    </table>
-</form>
+        </table>
+    </form>
 
 
-<script type="text/javascript">
-    function deleteUser(userId) {
-        $.ajax({
-            url: '/delete/' + userId,
-            type: 'DELETE',
-            contentType: "application/json; charset=utf-8",
-            success: function () {
-                location.reload()
-            },
-            error: function () {
-                alert("Всё сломалось!!!")
-            }
-        })
-    }
-</script>
+    <script type="text/javascript">
+        function deleteUser(userId) {
+            $.ajax({
+                url: '/delete/' + userId,
+                type: 'DELETE',
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    location.reload()
+                },
+                error: function () {
+                    alert("Всё сломалось!!!")
+                }
+            })
+        }
+    </script>

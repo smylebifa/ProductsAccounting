@@ -23,13 +23,34 @@ namespace ProductsAccountingNew.Services
             return shoppingList;
         }
 
-        public void AddProduct(string userName, ShoppingList shoppingList)
+        public void AddProduct(string userName, string productName, int count)
         {
             var userId = _dbContext.Users.ToList().Find(item => item.Name == userName).Id;
 
-            shoppingList.UserId = userId;
+            var productFound = _dbContext.ProductPrices.ToList().Find(item => item.Name == productName);
 
-            _dbContext.ShoppingList.Add(shoppingList);
+            if (productFound == null)
+                return;
+
+            var ProductInShoppingList = _dbContext.ShoppingList.FirstOrDefault(x => x.Name == productName && x.UserId == userId);
+            if (ProductInShoppingList == null)
+            {
+                ShoppingList shoppingList = new ShoppingList(userId, productName, count, productFound.Price);
+                _dbContext.ShoppingList.Add(shoppingList);
+            }
+
+            else
+            {
+                _dbContext.ShoppingList.Remove(ProductInShoppingList);
+
+                ProductInShoppingList.Count += count;
+
+                _dbContext.SaveChanges();
+
+                _dbContext.ShoppingList.Add(ProductInShoppingList);
+
+            }
+           
             _dbContext.SaveChanges();
         }
 
@@ -50,10 +71,7 @@ namespace ProductsAccountingNew.Services
             var userId = _dbContext.Users.ToList().Find(item => item.Name == userName).Id;
 
             var ProductInShoppingList = _dbContext.ShoppingList.FirstOrDefault(x => x.Name == productName && x.UserId == userId);
-            if (ProductInShoppingList == null)
-                return;
-
-            _dbContext.ShoppingList.Remove(ProductInShoppingList);
+           
 
             var existing = _dbContext.ProductsOfUsers.FirstOrDefault(x => x.ProductName == productName && x.UserId == userId);
             if (existing == null)
@@ -65,14 +83,14 @@ namespace ProductsAccountingNew.Services
                 if (user.Cash >= price * count)
                 {
                     _dbContext.ProductsOfUsers.Remove(existing);
-                    
+
                     existing.Count += count;
 
                     _dbContext.SaveChanges();
 
                     _dbContext.ProductsOfUsers.Add(existing);
 
-                    
+
                     _dbContext.Users.Remove(user);
 
                     user.Cash -= price * count;
@@ -81,11 +99,31 @@ namespace ProductsAccountingNew.Services
 
                     _dbContext.Users.Add(user);
 
+                    _dbContext.ShoppingList.Remove(ProductInShoppingList);
+
                 }
+               
             }
 
             _dbContext.SaveChanges();
+        }
 
+
+        public int? GetBalance(string userName)
+        {
+            return _dbContext.Users.ToList().Find(item => item.Name == userName).Cash;
+        }
+
+        public List<string> GetProductNamesAndPrices()
+        {
+            List<string> productName = new List<string>();
+
+            foreach (var product in _dbContext.ProductPrices)
+            {
+                productName.Add(product.Name);
+            }
+
+            return productName;
         }
 
     }

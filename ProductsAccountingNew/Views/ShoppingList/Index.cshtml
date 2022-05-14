@@ -6,6 +6,11 @@
 }
 
 <table class="table table-hover" style="text-align: center;">
+    <div class="row">
+        <div class="col-10"></div>
+        <h3 class="col-2" style="text-align:right">Баланс: @ViewBag.Balance</h3>
+    </div>
+
 
     <thead class="thead-dark">
         <tr>
@@ -30,38 +35,36 @@
         }
     </tbody>
 </table>
-<form method="post" asp-action="ShoppingList" class="my-5">
-    <table col-lg-5">
-        <h4>Добавление продуктов</h4>
+<form method="post" asp-action="ShoppingList" class="my-5 col-5" style="border-style: dashed; border-width:thin; border-color: #343a40; padding: 8px; ">
+    <fieldset>
+        <legend>
+            <h4>Добавление продуктов</h4>
+        </legend>
+        <table>
 
-        <tr>
-            <td>Название:</td>
-            <td>
-                <input type="text" name="Name" />
-            </td>
-        </tr>
-        <tr>
-            <td>Цена:</td>
-            <td>
-                <input type="text" name="Price" />
-            </td>
-        </tr>
-        <tr>
-            <td>Количество:</td>
-            <td>
-                <input type="text" name="Count" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" value="Добавить" />
-            </td>
-            <td></td>
-        </tr>
-
-    </table>
+            <tr>
+                <td style="padding: 4px;">Название:</td>
+                <td style="padding: 4px;">
+                    <select asp-for="Name" asp-items="@ViewBag.ProductNames" style="width: 100%;"></select>
+                    @*<select asp-items="ViewBag.ProductNames" name="Name"></select>*@
+                    @*<input type="text" name="Name" />*@
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 4px;">Количество:</td>
+                <td style="padding: 4px;">
+                    <input type="text" name="Count" />
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 2px;">
+                    <input type="submit" value="Добавить" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>
 </form>
-
 
 <script type="text/javascript">
     function buyProduct(productId, name, count, price) {

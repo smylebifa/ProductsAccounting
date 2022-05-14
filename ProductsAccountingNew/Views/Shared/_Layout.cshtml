@@ -24,9 +24,9 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Пользователи</a>
                             </li>
 
-                            @*<li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="ProductPrices" asp-action="Index">Цены на продукты</a>
-                            </li>*@
+                            </li>
 
                             <li class="nav-item">
                                 <a id="login-link" class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Index">Вход</a>
@@ -98,7 +98,7 @@
                 document.getElementById("register-menu").style.display = "none";
             },
             error: function () {
-                document.getElementById("login-link").innerText = "Login";
+                document.getElementById("login-link").innerText = "Вход";
                 document.getElementById("logout-menu").style.display = "none";
                 document.getElementById("register-menu").style.display = "block";
             }

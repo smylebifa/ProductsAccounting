@@ -15,5 +15,12 @@ namespace ProductsAccountingNew.Data
         public DbSet<ShoppingList> ShoppingList { get; set; } = null!;
         public DbSet<ProductPrice> ProductPrices { get; set; } = null!;
 
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Customer>()
+        //        .HasMany(c => c.Orders)
+        //        .WithOptional(o => o.Customer);
+        //}
+
     }
 }
