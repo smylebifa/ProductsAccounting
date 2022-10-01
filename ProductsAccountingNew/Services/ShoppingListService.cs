@@ -82,27 +82,29 @@ namespace ProductsAccountingNew.Services
 
                 if (user.Cash >= price * count)
                 {
-                    _dbContext.ProductsOfUsers.Remove(existing);
+                    //_dbContext.ProductsOfUsers.Remove(existing);
 
                     existing.Count += count;
 
-                    _dbContext.SaveChanges();
-
-                    _dbContext.ProductsOfUsers.Add(existing);
+                    
+                    //_dbContext.ProductsOfUsers.Add(existing);
 
 
                     _dbContext.Users.Remove(user);
 
+                    _dbContext.SaveChanges();
+
                     user.Cash -= price * count;
 
-                    _dbContext.SaveChanges();
 
                     _dbContext.Users.Add(user);
 
                     _dbContext.ShoppingList.Remove(ProductInShoppingList);
 
+                    _dbContext.SaveChanges();
+
                 }
-               
+
             }
 
             _dbContext.SaveChanges();
