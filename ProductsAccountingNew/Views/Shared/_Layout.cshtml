@@ -6,34 +6,33 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <script src="~/js/jquery-3.6.0.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
 </head>
 
 <style>
+
     a {
         color: white;
     }
 
-    a:hover, a:focus {
+        a:hover, a:focus {
+            color: #ffc107
+        }
+
+    .dropdown-toggle:hover, .dropdown-toggle:focus {
         color: #ffc107;
     }
 
-  .dropdown-toggle:hover, .dropdown-toggle:focus {
-    color: #ffc107;
-}
-
-
-  nav {
+    nav {
         background-color: #343a40;
-  }
-
+    }
 </style>
 
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3" >
-            <div class="container-fluid" >
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+            <div class="container-fluid">
                 <div class="navbar-collapse collapse d-sm-inline-flex ">
 
 
@@ -84,7 +83,6 @@
                             </li>
 
                         </ul>
-
 
                     }
 

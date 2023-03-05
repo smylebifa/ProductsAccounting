@@ -86,8 +86,6 @@ namespace ProductsAccountingNew.Controllers
             var name = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
             if (string.IsNullOrEmpty(name))
             {
-                // Код ошибки - не авторизован
-                HttpContext.Response.StatusCode = 401;
                 return string.Empty;
             }
 
@@ -100,7 +98,6 @@ namespace ProductsAccountingNew.Controllers
             ViewBag.Status = status;
             ViewBag.Login = login;
 
-            // Передаем пользователю представление RegisterPage 
             return View();
         }
 
