@@ -10,11 +10,19 @@
     <table>
         @Html.HiddenFor(m => m.Id)
         <tr>
-            <td style="padding: 4px;">Имя:</td>
+            <td style="padding: 4px;">Логин:</td>
             <td style="padding: 4px;">
-                @Html.TextBoxFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Login)
             </td>
         </tr>
+
+        <tr>
+            <td style="padding: 4px;">ФИО:</td>
+            <td style="padding: 4px;">
+                @Html.TextBoxFor(m => m.FullName)
+            </td>
+        </tr>
+
         <tr>
             <td style="padding: 4px;">Электронная почта:</td>
             <td style="padding: 4px;">
@@ -29,7 +37,7 @@
         </tr>
         <tr>
             <td style="padding: 2px;">
-                <input type="submit" value="Отправить" />
+                <input type="submit" value="Изменить" />
             </td>
             <td></td>
         </tr>

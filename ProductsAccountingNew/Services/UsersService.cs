@@ -26,7 +26,7 @@ namespace ProductsAccountingNew.Services
 
         public void AddUser(User user)
         {
-            if (_dbContext.Users.Any(x => x.Name == user.Name))
+            if (_dbContext.Users.Any(x => x.Login == user.Login))
                 throw new ArgumentException("User with such name already exists.");
 
             _dbContext.Users.Add(user);
@@ -35,7 +35,7 @@ namespace ProductsAccountingNew.Services
             var newPerson = new Person()
             {
                 Id = user.Id,
-                UserName = user.Name,
+                Login = user.Login,
                 PasswordHash = Hash("" + salt),
                 Salt = salt,
             };
@@ -45,6 +45,22 @@ namespace ProductsAccountingNew.Services
             _dbContext.SaveChanges();
         }
 
+        public bool IsUserExist(string login)
+        {
+
+            var person = _dbContext.Users.FirstOrDefault(x => x.Login == login);
+
+            if (person != null)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
         public void UpdateUser(User user)
         {
             var existing = _dbContext.Users.FirstOrDefault(x => x.Id == user.Id);
@@ -52,7 +68,8 @@ namespace ProductsAccountingNew.Services
             if (existing == null)
                 return;
 
-            existing.Name = user.Name;
+            existing.Login = user.Login;
+            existing.FullName = user.FullName;
             existing.Email = user.Email;
             existing.Cash = user.Cash;
 

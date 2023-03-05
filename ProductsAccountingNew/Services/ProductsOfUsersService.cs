@@ -17,17 +17,17 @@ namespace ProductsAccountingNew.Services
             _dbContext = dbContext;
         }
 
-        public IEnumerable<ProductOfUser> GetProducts(string nameOfUser)
+        public IEnumerable<ProductOfUser> GetProducts(string login)
         {
-            var userId = _dbContext.Users.ToList().Find(item => item.Name == nameOfUser).Id;
+            var userId = _dbContext.Users.ToList().Find(item => item.Login == login).Id;
 
             var userProducts = _dbContext.ProductsOfUsers.ToList().FindAll(item => item.UserId == userId).ToArray();
             return userProducts;
         }
 
-        public void AddProductToUser(string nameOfUser, ProductOfUser productOfUser)
+        public void AddProductToUser(string login, ProductOfUser productOfUser)
         {
-            var userId = _dbContext.Users.ToList().Find(item => item.Name == nameOfUser).Id;
+            var userId = _dbContext.Users.ToList().Find(item => item.Login == login).Id;
             productOfUser.UserId = userId;
 
             _dbContext.ProductsOfUsers.Add(productOfUser);

@@ -2,18 +2,156 @@
     ViewData["Title"] = "Регистрация";
 }
 
-<h2>Регистрация</h2>
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+
 <form method="post" asp-action="Register">
-    <p>
-        <label>Логин</label>
-        <br />
-        <input name="username" />
-    </p>
-    <p>
-        <label>Пароль</label>
-        <br />
-        <input type="password" name="password" />
-    </p>
-    <input type="submit" value="Зарегистрироваться" />
+
+    <div class="mb-3 row">
+        <div class="col-sm-4 col-form-label"></div>
+
+        <div class="col-sm-3">
+            <label class="form-label h3">Регистрация</label>
+        </div>
+
+        <div class="col-sm-5 col-form-label"></div>
+    </div>
+
+
+    @{
+        if (@ViewBag.Status == "success")
+        {
+            <div class="mb-3 row">
+                <div class="col-sm-4 col-form-label"></div>
+
+                <div class="col-sm-3">
+                    <label class="form-label">Логин</label>
+                    <input type="text" name="login" value="@ViewBag.Login" class="form-control">
+                </div>
+
+                <div class="col-sm-5 col-form-label"></div>
+            </div>
+
+
+            <div class="mb-3 row">
+                <div class="col-sm-4 col-form-label"></div>
+
+                <div class="col-sm-3">
+                    <label class="form-label">Пароль</label>
+                    <input type="password" name="password" value="@ViewBag.Password" class="form-control">
+                </div>
+
+                <div class="col-sm-5 col-form-label"></div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-sm-4 col-form-label"></div>
+
+                <div class="col-sm-3">
+                    <label class="form-label">Подвтерждение пароля</label>
+                    <input type="password" name="password2" class="form-control">
+                </div>
+
+                <div class="col-sm-5 col-form-label"></div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-sm-4 col-form-label"></div>
+
+                <div class="col-sm-3">
+                    <button type="submit" class="submitBtn btn btn-primary">Зарегистрироваться</button>
+                </div>
+
+                <div class="col-sm-5 col-form-label"></div>
+            </div>
+
+        }
+
+        else
+        {
+            <div class="mb-3 row">
+                <div class="col-sm-4 col-form-label"></div>
+
+                <div class="col-sm-3">
+                    <label class="form-label">Логин</label>
+                    <input type="text" name="login" value="@ViewBag.Login" class="form-control">
+                </div>
+
+                <div class="col-sm-5 col-form-label"></div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-sm-4 col-form-label"></div>
+
+                <div class="col-sm-3">
+                    <button type="submit" class="submitBtn btn btn-primary">Далее</button>
+                </div>
+
+                <div class="col-sm-5 col-form-label"></div>
+            </div>
+
+        }
+    }
+
+
 </form>
+
+
+
+
+@{
+    if (@ViewBag.Status == "errorWithLogin")
+    {
+        <script type="text/javascript">
+            $.get(this.href, function (data) {
+                $('#dialogContent').html('<div class="modal-content"> <div class="modal-header"><h4>Ошибка</h4><button class="close" data-dismiss="modal" area-hidden="true">x</button></div><div class="modal-body"> <dl class="dl-horizontal"> <dt>Ошибка:</dt> <dd>Пользователь с таким именем уже существует или введен неверно</dd> </dl> </div> </div>');
+                $('#modDialog').modal('show');
+            });
+        </script>
+    }
+
+}
+
+
+@section scripts
+        {
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".submitBtn").click(function (e) {
+                let registerForm = document.forms.registerForm;
+                let login = registerForm.elements.login.value;
+                let email = registerForm.elements.email.value;
+                let password1 = registerForm.elements.password.value;
+                let password2 = registerForm.elements.password2.value;
+                if (password1 != password2) {
+                    e.preventDefault();
+                    $.get(this.href, function (data) {
+                        $('#dialogContent').html('<div class="modal-content"> <div class="modal-header"><h4>Ошибка</h4><button class="close" data-dismiss="modal" area-hidden="true">x</button></div><div class="modal-body"> <dl class="dl-horizontal"> <dt>Ошибка:</dt> <dd>Пароли не совпадают</dd> </dl> </div> </div>');
+                        $('#modDialog').modal('show');
+                    });
+                }
+                if (login == "") {
+                    e.preventDefault();
+                    $.get(this.href, function (data) {
+                        $('#dialogContent').html('<div class="modal-content"> <div class="modal-header"><h4>Ошибка</h4><button class="close" data-dismiss="modal" area-hidden="true">x</button></div><div class="modal-body"> <dl class="dl-horizontal"> <dt>Ошибка:</dt> <dd>Для регистрации нужно ввести логин</dd> </dl> </div> </div>');
+                        $('#modDialog').modal('show');
+                    });
+                }
+              
+                else if (password1 == "") {
+                    e.preventDefault();
+                    $.get(this.href, function (data) {
+                        $('#dialogContent').html('<div class="modal-content"> <div class="modal-header"><h4>Ошибка</h4><button class="close" data-dismiss="modal" area-hidden="true">x</button></div><div class="modal-body"> <dl class="dl-horizontal"> <dt>Ошибка:</dt> <dd>Для регистрации нужно ввести пароль</dd> </dl> </div> </div>');
+                        $('#modDialog').modal('show');
+                    });
+                }
+
+            });
+        })
+    </script>
+}
+
+
 

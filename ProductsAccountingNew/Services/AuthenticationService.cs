@@ -17,10 +17,10 @@ namespace ProductsAccountingNew.Services
         }
 
         // Если имя пользователя найдено в базе, возвращаем его Id, иначе создаем нового пользователя
-        public Guid Register(string userName, string password)
+        public Guid Register(string login, string password)
         {
 
-            var person = _dbContext.Persons.FirstOrDefault(x => x.UserName == userName);
+            var person = _dbContext.Persons.FirstOrDefault(x => x.Login == login);
             if (person != null)
                 return person.Id;
 
@@ -28,20 +28,36 @@ namespace ProductsAccountingNew.Services
 
             Guid Id = Guid.NewGuid();
 
-            var newPerson = new Person() { Id = Id, UserName = userName, PasswordHash = Hash(password + salt), Salt = salt };
+            var newPerson = new Person() { Id = Id, Login = login, PasswordHash = Hash(password + salt), Salt = salt };
 
             _dbContext.Persons.Add(newPerson);
 
-            _dbContext.Users.Add(new User(Id, userName, "", 0));
+            _dbContext.Users.Add(new User(Id, login, "", "", 0));
 
             _dbContext.SaveChanges();
             return newPerson.Id;
         }
 
-        // Проверяем существует ли пользователь в базе данных с таким именем, если существует проверяем совпадает ли пароль
-        public bool Login(string userName, string password)
+        public bool IsUserExist(string login)
         {
-            var person = _dbContext.Persons.FirstOrDefault(x => x.UserName == userName);
+
+            var person = _dbContext.Persons.FirstOrDefault(x => x.Login == login);
+
+            if (person != null)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        // Проверяем существует ли пользователь в базе данных с таким именем, если существует проверяем совпадает ли пароль
+        public bool Login(string login, string password)
+        {
+            var person = _dbContext.Persons.FirstOrDefault(x => x.Login == login);
             if (person == null)
                 return false;
 

@@ -9,7 +9,8 @@
 
     <thead class="thead-dark">
         <tr>
-            <th scope="col">Имя пользователя</th>
+            <th scope="col">Логин</th>
+            <th scope="col">ФИО пользователя</th>
             <th scope="col">Почта</th>
             <th scope="col">Баланс</th>
             <th scope="col"></th>
@@ -20,13 +21,14 @@
     <tbody>
         @foreach (var user in @ViewBag.Users)
         {
-            <tr>
-                <td>@user.Name</td>
-                <td>@user.Email</td>
-                <td>@user.Cash</td>
-                <td>@Html.ActionLink("изменить", "User", new { id = user.Id })</td>
-                <td><a onclick="deleteUser('@user.Id')" href="#"> удалить </a></td>
-            </tr>
+        <tr>
+            <td>@user.Login</td>
+            <td>@user.FullName</td>
+            <td>@user.Email</td>
+            <td>@user.Cash</td>
+            <td>@Html.ActionLink("изменить", "User", new { id = user.Id })</td>
+            <td><a onclick="deleteUser('@user.Id')" href="#"> удалить </a></td>
+        </tr>
         }
     </tbody>
 </table>
@@ -37,7 +39,13 @@
             <tr>
                 <td style="padding: 4px;">Имя:</td>
                 <td style="padding: 4px;">
-                    <input type="text" name="Name" />
+                    <input type="text" name="Login" />
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 4px;">ФИО:</td>
+                <td style="padding: 4px;">
+                    <input type="text" name="FullName" />
                 </td>
             </tr>
             <tr>
@@ -54,7 +62,7 @@
             </tr>
             <tr>
                 <td style="padding: 2px;">
-                    <input type="submit" value="Отправить" />
+                    <input type="submit" value="Добавить" />
                 </td>
                 <td></td>
             </tr>

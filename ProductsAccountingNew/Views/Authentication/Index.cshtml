@@ -1,17 +1,105 @@
 ﻿@{
     ViewData["Title"] = "Вход";
 }
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
 
 <form method="post" asp-action="Login">
-    <p>
-        <label>Логин</label>
-        <br />
-        <input name="username" />
-    </p>
-    <p>
-        <label>Пароль</label>
-        <br />
-        <input type="password" name="password" />
-    </p>
-    <input type="submit" value="Войти" />
+
+    <div class="mb-3 row">
+        <div class="col-sm-4 col-form-label"></div>
+
+        <div class="col-sm-3">
+            <label class="form-label h3">Вход</label>
+        </div>
+
+        <div class="col-sm-5 col-form-label"></div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-4 col-form-label"></div>
+
+        <div class="col-sm-3">
+            <label class="form-label">Логин</label>
+            <input type="text" name="login" value="@ViewBag.Login" class="form-control">
+        </div>
+
+        <div class="col-sm-5 col-form-label"></div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-4 col-form-label"></div>
+
+        <div class="col-sm-3">
+            <label class="form-label">Пароль</label>
+            <input type="password" name="password" value="@ViewBag.Password" class="form-control">
+        </div>
+
+        <div class="col-sm-5 col-form-label"></div>
+    </div>
+
+
+    <div class="mb-3 row">
+        <div class="col-sm-4 col-form-label"></div>
+
+        <div class="col-sm-3">
+            <button type="submit" class="submitBtn btn btn-primary">Войти</button>
+        </div>
+
+        <div class="col-sm-5 col-form-label"></div>
+    </div>
+
 </form>
+
+
+@section scripts
+        {
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".submitBtn").click(function (e) {
+                let loginForm = document.forms.loginForm;
+                let login = loginForm.elements.login.value;
+                let password = loginForm.elements.password.value;
+                if (login == "") {
+                    e.preventDefault();
+                    $.get(this.href, function (data) {
+                        $('#dialogContent').html('<div class="modal-content"> <div class="modal-header"><h4>Ошибка</h4><button class="close" data-dismiss="modal" area-hidden="true">x</button></div><div class="modal-body"> <dl class="dl-horizontal"> <dt>Ошибка:</dt> <dd>Для регистрации нужно ввести логин</dd> </dl> </div> </div>');
+                        $('#modDialog').modal('show');
+                    });
+                }
+
+                else if (password == "") {
+                    e.preventDefault();
+                    $.get(this.href, function (data) {
+                        $('#dialogContent').html('<div class="modal-content"> <div class="modal-header"><h4>Ошибка</h4><button class="close" data-dismiss="modal" area-hidden="true">x</button></div><div class="modal-body"> <dl class="dl-horizontal"> <dt>Ошибка:</dt> <dd>Для регистрации нужно ввести пароль</dd> </dl> </div> </div>');
+                        $('#modDialog').modal('show');
+                    });
+                }
+            });
+        })
+    </script>
+}
+
+@{
+    if (@ViewBag.Status == "errorWithLogin")
+    {
+        <script type="text/javascript">
+            $.get(this.href, function (data) {
+                $('#dialogContent').html('<div class="modal-content"> <div class="modal-header"><h4>Ошибка</h4><button class="close" data-dismiss="modal" area-hidden="true">x</button></div><div class="modal-body"> <dl class="dl-horizontal"> <dt>Ошибка:</dt> <dd>Пользователь с таким логином не найден в системе</dd> </dl> </div> </div>');
+                $('#modDialog').modal('show');
+            });
+        </script>
+    }
+
+    else if (@ViewBag.Status == "errorWithPassword")
+    {
+        <script type="text/javascript">
+            $.get(this.href, function (data) {
+                $('#dialogContent').html('<div class="modal-content"> <div class="modal-header"><h4>Ошибка</h4><button class="close" data-dismiss="modal" area-hidden="true">x</button></div><div class="modal-body"> <dl class="dl-horizontal"> <dt>Ошибка:</dt> <dd>Пароль введен неверно</dd> </dl> </div> </div>');
+                $('#modDialog').modal('show');
+            });
+        </script>
+    }
+}

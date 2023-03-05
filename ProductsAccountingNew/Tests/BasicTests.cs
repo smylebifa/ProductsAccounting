@@ -42,14 +42,14 @@ namespace ProductsAccountingNew.Tests
         {
             using var dbContext = new TestDbContext(_options);
             var sut = new UsersService(dbContext);
-            var expectedUser = new User(Guid.NewGuid(), "test1", "test2", 500);
+            var expectedUser = new User(Guid.NewGuid(), "test1", "test2", "test3", 500);
 
             sut.AddUser(expectedUser);
 
             var users = sut.GetUsers();
             var user = users.Single();
             Assert.AreEqual(expectedUser.Id, user.Id);
-            Assert.AreEqual(expectedUser.Name, user.Name);
+            Assert.AreEqual(expectedUser.Login, user.Login);
             Assert.AreEqual(expectedUser.Email, user.Email);
             Assert.AreEqual(expectedUser.Cash, user.Cash);
         }
@@ -59,14 +59,14 @@ namespace ProductsAccountingNew.Tests
         {
             using var dbContext = new TestDbContext(_options);
             var sut = new UsersService(dbContext);
-            var expectedUser = new User(Guid.NewGuid(), null, null, null);
+            var expectedUser = new User(Guid.NewGuid(), null, null, null, null);
 
             sut.AddUser(expectedUser);
 
             var users = sut.GetUsers();
             var user = users.Single();
             Assert.AreEqual(expectedUser.Id, user.Id);
-            Assert.AreEqual(expectedUser.Name, user.Name);
+            Assert.AreEqual(expectedUser.Login, user.Login);
             Assert.AreEqual(expectedUser.Email, user.Email);
             Assert.AreEqual(expectedUser.Cash, user.Cash);
         }

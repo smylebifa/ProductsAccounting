@@ -19,9 +19,12 @@ namespace ProductsAccountingNew.Controllers
         }
 
         [HttpGet("/login")]
-        public IActionResult Index()
+        public IActionResult Index(string status = "", string login = "", string password = "")
         {
-            // Передаем пользователю представление Index (берется из названия функции контроллера) 
+            ViewBag.Status = status;
+            ViewBag.Login = login;
+            ViewBag.Password = password;
+
             return View();
         }
 
@@ -31,22 +34,39 @@ namespace ProductsAccountingNew.Controllers
             var context = HttpContext;
             var form = context.Request.Form;
 
-            // Проверка на заполненность полей формы
-            if (!form.ContainsKey("username") || !form.ContainsKey("password"))
-                return RedirectToPage("400");
-
-            var username = form["username"];
+            var login = form["login"];
             var password = form["password"];
 
-            if (!_authenticationService.Login(username, password))
-                return RedirectToPage("401");
+            if (!form.ContainsKey("login"))
+            {
+                return RedirectToAction("Index", "Authentication", new { status = "errorWithLogin", login = login });
+            }
+
+            if (!form.ContainsKey("password"))
+            {
+                return RedirectToAction("Index", "Authentication", new { status = "errorWithPassword", login = login });
+            }
+
+            if (_authenticationService.IsUserExist(login))
+            {
+                if (!_authenticationService.Login(login, password))
+                {
+                    return RedirectToAction("Index", "Authentication", new { status = "errorWithPassword", login = login, password = password });
+                }
+            }
+
+            else
+            {
+                return RedirectToAction("Index", "Authentication", new { status = "errorWithLogin", login = login, password = password });
+            }
 
 
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
+            var claims = new List<Claim> { new Claim(ClaimTypes.Name, login) };
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
             return RedirectToAction("Index", "Home");
+
         }
 
         [HttpGet("/logout")]
@@ -75,17 +95,38 @@ namespace ProductsAccountingNew.Controllers
         }
 
         [HttpGet]
-        public IActionResult RegisterPage()
+        public IActionResult RegisterPage(string status = "", string login = "")
         {
+            ViewBag.Status = status;
+            ViewBag.Login = login;
+
             // Передаем пользователю представление RegisterPage 
             return View();
         }
 
         [HttpPost]
-        public IActionResult Register(string userName, string password)
+        public IActionResult Register(string login, string password)
         {
-            _authenticationService.Register(userName, password);
-            return RedirectToAction("Index");
+            if (login == "" || login == null || _authenticationService.IsUserExist(login))
+            {
+                return RedirectToAction("RegisterPage", "Authentication", new { status = "errorWithLogin", login = login });
+            }
+
+            else
+            {
+                if (password == null || password == "")
+                {
+                    return RedirectToAction("RegisterPage", "Authentication", new { status = "success", login = login });
+                }
+
+                else
+                {
+                    _authenticationService.Register(login, password);
+                    return RedirectToAction("Index");
+                }
+
+            }
+
         }
     }
 }
