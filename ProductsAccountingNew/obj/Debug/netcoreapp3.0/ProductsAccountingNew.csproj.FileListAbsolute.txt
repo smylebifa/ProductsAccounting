@@ -20,9 +20,7 @@ E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\ProductsAccountingNew.TagHelpers.output.cache
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\ProductsAccountingNew.RazorCoreGenerate.cache
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
-E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
-E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\_ViewImports.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\_ViewStart.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\ProductsAccountingNew.RazorTargetAssemblyInfo.cache
@@ -178,5 +176,4 @@ E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\nunit.framework.dll
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ProductPrices\Index.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ProductPrices\ProductPrice.cshtml.g.cs
-E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\Web.config
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\ProductsAccountingNew.MvcApplicationPartsAssemblyInfo.cache
