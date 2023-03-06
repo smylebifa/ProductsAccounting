@@ -177,3 +177,4 @@ E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\bin\Debug\netcoreapp3.0\
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ProductPrices\Index.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\ProductPrices\ProductPrice.cshtml.g.cs
 E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\ProductsAccountingNew.MvcApplicationPartsAssemblyInfo.cache
+E:\ilia\Web\ProductsAccountingNew\ProductsAccountingNew\obj\Debug\netcoreapp3.0\Razor\Views\Users\ChangingUser.cshtml.g.cs

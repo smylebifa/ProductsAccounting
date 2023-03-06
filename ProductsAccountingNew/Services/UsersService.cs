@@ -24,10 +24,10 @@ namespace ProductsAccountingNew.Services
             return _dbContext.Users.ToArray();
         }
 
-        public void AddUser(User user)
+        public bool AddUser(User user)
         {
             if (_dbContext.Users.Any(x => x.Login == user.Login))
-                throw new ArgumentException("User with such name already exists.");
+                return false;
 
             _dbContext.Users.Add(user);
 
@@ -43,11 +43,12 @@ namespace ProductsAccountingNew.Services
             _dbContext.Persons.Add(newPerson);
 
             _dbContext.SaveChanges();
+
+            return true;
         }
 
         public bool IsUserExist(string login)
         {
-
             var person = _dbContext.Users.FirstOrDefault(x => x.Login == login);
 
             if (person != null)
@@ -72,6 +73,21 @@ namespace ProductsAccountingNew.Services
             existing.FullName = user.FullName;
             existing.Email = user.Email;
             existing.Cash = user.Cash;
+
+            _dbContext.SaveChanges();
+        }
+
+        public void UpdateUser(Guid id, string login, string fullName, string email, int cash)
+        {
+            var existing = _dbContext.Users.FirstOrDefault(x => x.Id == id);
+
+            if (existing == null)
+                return;
+
+            existing.Login = login;
+            existing.FullName = fullName;
+            existing.Email = email;
+            existing.Cash = cash;
 
             _dbContext.SaveChanges();
         }

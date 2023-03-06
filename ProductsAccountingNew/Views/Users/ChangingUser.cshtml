@@ -1,7 +1,7 @@
 ﻿@model ProductsAccountingNew.Models.User;
 
 @{
-    ViewBag.Title = "Добавление пользователя";
+    ViewBag.Title = "Редактирование пользователя";
     Layout = "_Layout";
 }
 
@@ -9,12 +9,14 @@
     <div id="dialogContent" class="modal-dialog"></div>
 </div>
 
-<h3>Добавление пользователя</h3>
+<h3>Редактирование пользователя</h3>
 <br>
 
-<form method="post" asp-action="AddUser" name="addUserForm" style="border-color: #343a40;">
-
+<form method="post" asp-action="Edit" name="editUserForm" style="border-color: #343a40;">
     <table>
+
+        @Html.HiddenFor(m => m.Id)
+
         <tr>
             <td style="padding: 4px;">Логин:</td>
             <td style="padding: 4px;">
@@ -44,6 +46,7 @@
 
         <br>
 
+
         <tr>
             <td style="padding: 4px;">
             </td>
@@ -59,6 +62,7 @@
 
     </table>
 </form>
+
 
 @{
     if (@ViewBag.Status == "errorWithLogin")
@@ -79,12 +83,12 @@
         $(function () {
             $.ajaxSetup({ cache: false });
             $(".submitBtn").click(function (e) {
-                let addUserForm = document.forms.addUserForm;
-                let login = addUserForm.elements.login.value;
+                let editUserForm = document.forms.editUserForm;
+                let login = editUserForm.elements.Login.value;
                 if (login == "") {
                     e.preventDefault();
                     $.get(this.href, function (data) {
-                        $('#dialogContent').html('<div class="modal-content"> <div class="modal-header"><h4>Ошибка</h4><button class="close" data-dismiss="modal" area-hidden="true">x</button></div><div class="modal-body"> <dl class="dl-horizontal"> <dt>Ошибка:</dt> <dd>Для добавления пользователя нужно ввести логин</dd> </dl> </div> </div>');
+                        $('#dialogContent').html('<div class="modal-content"> <div class="modal-header"><h4>Ошибка</h4><button class="close" data-dismiss="modal" area-hidden="true">x</button></div><div class="modal-body"> <dl class="dl-horizontal"> <dt>Ошибка:</dt> <dd>Нужно задать логин</dd> </dl> </div> </div>');
                         $('#modDialog').modal('show');
                     });
                 }

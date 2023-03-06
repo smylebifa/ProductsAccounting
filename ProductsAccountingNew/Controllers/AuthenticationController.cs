@@ -37,27 +37,17 @@ namespace ProductsAccountingNew.Controllers
             var login = form["login"];
             var password = form["password"];
 
-            if (!form.ContainsKey("login"))
-            {
-                return RedirectToAction("Index", "Authentication", new { status = "errorWithLogin", login = login });
-            }
-
-            if (!form.ContainsKey("password"))
-            {
-                return RedirectToAction("Index", "Authentication", new { status = "errorWithPassword", login = login });
-            }
-
             if (_authenticationService.IsUserExist(login))
             {
                 if (!_authenticationService.Login(login, password))
                 {
-                    return RedirectToAction("Index", "Authentication", new { status = "errorWithPassword", login = login, password = password });
+                    return RedirectToAction("Index", "Authentication", new { status = "errorWithPassword",  login, password });
                 }
             }
 
             else
             {
-                return RedirectToAction("Index", "Authentication", new { status = "errorWithLogin", login = login, password = password });
+                return RedirectToAction("Index", "Authentication", new { status = "errorWithLogin",login, password });
             }
 
 
@@ -106,20 +96,20 @@ namespace ProductsAccountingNew.Controllers
         {
             if (login == "" || login == null || _authenticationService.IsUserExist(login))
             {
-                return RedirectToAction("RegisterPage", "Authentication", new { status = "errorWithLogin", login = login });
+                return RedirectToAction("RegisterPage", "Authentication", new { status = "errorWithLogin", login });
             }
 
             else
             {
                 if (password == null || password == "")
                 {
-                    return RedirectToAction("RegisterPage", "Authentication", new { status = "success", login = login });
+                    return RedirectToAction("RegisterPage", "Authentication", new { status = "success", login });
                 }
 
                 else
                 {
                     _authenticationService.Register(login, password);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { status = "successRegistration"});
                 }
 
             }

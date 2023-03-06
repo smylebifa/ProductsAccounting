@@ -6,7 +6,7 @@
     <div id="dialogContent" class="modal-dialog"></div>
 </div>
 
-<form method="post" asp-action="Register">
+<form method="post" name="registerForm" asp-action="Register">
 
     <div class="mb-3 row">
         <div class="col-sm-4 col-form-label"></div>
@@ -17,7 +17,6 @@
 
         <div class="col-sm-5 col-form-label"></div>
     </div>
-
 
     @{
         if (@ViewBag.Status == "success")
@@ -94,9 +93,7 @@
         }
     }
 
-
 </form>
-
 
 
 
@@ -121,10 +118,11 @@
             $.ajaxSetup({ cache: false });
             $(".submitBtn").click(function (e) {
                 let registerForm = document.forms.registerForm;
+
                 let login = registerForm.elements.login.value;
-                let email = registerForm.elements.email.value;
                 let password1 = registerForm.elements.password.value;
                 let password2 = registerForm.elements.password2.value;
+
                 if (password1 != password2) {
                     e.preventDefault();
                     $.get(this.href, function (data) {
@@ -132,6 +130,7 @@
                         $('#modDialog').modal('show');
                     });
                 }
+
                 if (login == "") {
                     e.preventDefault();
                     $.get(this.href, function (data) {
@@ -139,8 +138,8 @@
                         $('#modDialog').modal('show');
                     });
                 }
-              
-                else if (password1 == "") {
+
+                if (password1 == "") {
                     e.preventDefault();
                     $.get(this.href, function (data) {
                         $('#dialogContent').html('<div class="modal-content"> <div class="modal-header"><h4>Ошибка</h4><button class="close" data-dismiss="modal" area-hidden="true">x</button></div><div class="modal-body"> <dl class="dl-horizontal"> <dt>Ошибка:</dt> <dd>Для регистрации нужно ввести пароль</dd> </dl> </div> </div>');

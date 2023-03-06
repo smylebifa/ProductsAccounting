@@ -5,11 +5,30 @@
     Layout = "_Layout";
 }
 
-    <style>
-        a.nav-link.users {
-            color: #ffc107;
-        }
-    </style>
+<style>
+    a.nav-link.users {
+        color: #ffc107;
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-4">
+        <h3>Пользователи системы</h3>
+    </div>
+
+    <div class="col-sm-4" style="margin: auto;">
+        <h5><a asp-controller="Users" asp-action="User">Добавить пользователя</a></h5>
+    </div>
+
+    <div class="col-sm-4"></div>
+
+</div>
+
+<br>
+
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
 
 <table class="table table-hover" style="text-align: center;">
 
@@ -27,68 +46,31 @@
     <tbody>
         @foreach (var user in @ViewBag.Users)
         {
-        <tr>
-            <td>@user.Login</td>
-            <td>@user.FullName</td>
-            <td>@user.Email</td>
-            <td>@user.Cash</td>
-            <td>@Html.ActionLink("изменить", "User", new { id = user.Id })</td>
-            <td><a onclick="deleteUser('@user.Id')" href="#"> удалить </a></td>
-        </tr>
+            <tr>
+                <td>@user.Login</td>
+                <td>@user.FullName</td>
+                <td>@user.Email</td>
+                <td>@user.Cash</td>
+                <td>@Html.ActionLink("изменить", "ChangingUser", new { id = user.Id})</td>
+                <td><a onclick="deleteUser('@user.Id')" href="#"> удалить </a></td>
+            </tr>
         }
     </tbody>
 </table>
-    <form method="post" asp-action="Users" class="my-5 col-5" style="border-style: dashed; border-width:thin; border-color: #343a40; padding: 8px; ">
-        <table>
-            <h4>Добавление пользователей</h4>
-
-            <tr>
-                <td style="padding: 4px;">Имя:</td>
-                <td style="padding: 4px;">
-                    <input type="text" name="Login" />
-                </td>
-            </tr>
-            <tr>
-                <td style="padding: 4px;">ФИО:</td>
-                <td style="padding: 4px;">
-                    <input type="text" name="FullName" />
-                </td>
-            </tr>
-            <tr>
-                <td style="padding: 4px;">Электронная почта:</td>
-                <td style="padding: 4px;">
-                    <input type="text" name="Email" />
-                </td>
-            </tr>
-            <tr>
-                <td style="padding: 4px;">Баланс:</td>
-                <td style="padding: 4px;">
-                    <input type="text" name="Cash" />
-                </td>
-            </tr>
-            <tr>
-                <td style="padding: 2px;">
-                    <input type="submit" value="Добавить" />
-                </td>
-                <td></td>
-            </tr>
-
-        </table>
-    </form>
 
 
-    <script type="text/javascript">
-        function deleteUser(userId) {
-            $.ajax({
-                url: '/delete/' + userId,
-                type: 'DELETE',
-                contentType: "application/json; charset=utf-8",
-                success: function () {
-                    location.reload()
-                },
-                error: function () {
-                    alert("Всё сломалось!!!")
-                }
-            })
-        }
-    </script>
+<script type="text/javascript">
+    function deleteUser(userId) {
+        $.ajax({
+            url: '/delete/' + userId,
+            type: 'DELETE',
+            contentType: "application/json; charset=utf-8",
+            success: function () {
+                location.reload()
+            },
+            error: function () {
+                alert("Всё сломалось!!!")
+            }
+        })
+    }
+</script>
