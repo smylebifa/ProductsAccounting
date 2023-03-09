@@ -5,27 +5,47 @@
     Layout = "_Layout";
 }
 
+<div class="row">
+    <div class="col-sm-4">
+        <h3>Изменение цены продукта</h3>
+    </div>
+
+    <div class="col-sm-8"></div>
+</div>
+
 @using (Html.BeginForm("Edit", "ProductPrices", FormMethod.Post))
 {
-    <table>
-        @Html.HiddenFor(m => m.Id)
-        <tr>
-            <td>Название:</td>
-            <td>
-                @Html.TextBoxFor(m => m.Name)
-            </td>
-        </tr>
-        <tr>
-            <td>Цена:</td>
-            <td>
-                @Html.TextBoxFor(m => m.Price)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" class="btn btn-warning" value="Изменить" />
-            </td>
-            <td></td>
-        </tr>
-    </table>
+<table>
+    @Html.HiddenFor(m => m.Id)
+    <tr>
+        <td>Название:</td>
+        <td>
+            @Html.TextBoxFor(m => m.Name)
+        </td>
+    </tr>
+    <tr>
+        <td>Цена:</td>
+        <td>
+            @Html.TextBoxFor(m => m.Price)
+        </td>
+    </tr>
+
+
+    <br>
+
+
+    <tr>
+        <td style="padding: 4px;">
+        </td>
+
+        <td style="padding: 4px;">
+            <a class="btn btn-outline-dark" href="/ProductPrices" style="text-align:center">Отмена</a>
+            <input type="submit" class="btn btn-outline-warning submitBtn" value="Изменить" />
+        </td>
+
+        <td style="padding: 4px;">
+        </td>
+    </tr>
+
+</table>
 }

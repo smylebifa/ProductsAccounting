@@ -50,7 +50,7 @@ namespace ProductsAccountingNew.Services
                 _dbContext.ShoppingList.Add(ProductInShoppingList);
 
             }
-           
+
             _dbContext.SaveChanges();
         }
 
@@ -68,46 +68,34 @@ namespace ProductsAccountingNew.Services
 
         public void BuyProduct(string login, Guid productId, string productName, int count, int price)
         {
-            var userId = _dbContext.Users.ToList().Find(item => item.Login == login).Id;
+            var user = _dbContext.Users.ToList().Find(item => item.Login == login);
 
-            var ProductInShoppingList = _dbContext.ShoppingList.FirstOrDefault(x => x.Name == productName && x.UserId == userId);
-           
+            var ProductInShoppingList = _dbContext.ShoppingList.FirstOrDefault(x => x.Name == productName && x.UserId == user.Id);
 
-            var existing = _dbContext.ProductsOfUsers.FirstOrDefault(x => x.ProductName == productName && x.UserId == userId);
-            if (existing == null)
-                _dbContext.ProductsOfUsers.Add(new ProductOfUser(productId, productName, count, userId));
-            else
+            var foundedProduct = _dbContext.ProductsOfUsers.FirstOrDefault(x => x.ProductName == productName && x.UserId == user.Id);
+
+            if (user.Cash >= price * count)
             {
-                var user = _dbContext.Users.FirstOrDefault(x => x.Id == userId);
-
-                if (user.Cash >= price * count)
+                if (foundedProduct != null)
                 {
-                    //_dbContext.ProductsOfUsers.Remove(existing);
-
-                    existing.Count += count;
-
-                    
-                    //_dbContext.ProductsOfUsers.Add(existing);
-
-
-                    _dbContext.Users.Remove(user);
-
-                    _dbContext.SaveChanges();
-
-                    user.Cash -= price * count;
-
-
-                    _dbContext.Users.Add(user);
-
-                    _dbContext.ShoppingList.Remove(ProductInShoppingList);
-
-                    _dbContext.SaveChanges();
-
+                    foundedProduct.Count += count;
                 }
 
-            }
+                else
+                {
+                    ProductOfUser newProduct = new ProductOfUser(Guid.NewGuid(), productName, count, user.Id);
+                    _dbContext.ProductsOfUsers.Add(newProduct);
+                }
+                               
 
-            _dbContext.SaveChanges();
+                user.Cash -= price * count;
+
+                _dbContext.Users.Update(user);
+
+                _dbContext.ShoppingList.Remove(ProductInShoppingList);
+
+                _dbContext.SaveChanges();
+            }
         }
 
 
